@@ -1,0 +1,68 @@
+{
+  "name": "buddypress/buddypress-followers",
+  "description": "A modern BuddyPress plugin that adds Twitter-style follow functionality to your BuddyPress community",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "version": "2.0.0",
+  "keywords": [
+    "buddypress",
+    "followers",
+    "following",
+    "social",
+    "community"
+  ],
+  "authors": [
+    {
+      "name": "Andy Peatling",
+      "role": "Original Author"
+    },
+    {
+      "name": "r-a-y",
+      "role": "Maintainer"
+    },
+    {
+      "name": "vapvarun",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "composer/installers": "^1.0 || ^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "wp-coding-standards/wpcs": "^3.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "phpcompatibility/phpcompatibility-wp": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Followers\\": "src/"
+    },
+    "files": [
+      "includes/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Followers\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "phpcs": "phpcs --standard=WordPress --extensions=php src/ includes/",
+    "phpcbf": "phpcbf --standard=WordPress --extensions=php src/ includes/",
+    "test": "phpunit",
+    "lint": "find src/ includes/ -name '*.php' -print0 | xargs -0 -n1 php -l"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "classmap-authoritative": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

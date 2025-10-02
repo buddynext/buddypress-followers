@@ -1,0 +1,58 @@
+/**
+ * Following & Followers Block Styles
+ * Based on BuddyPress dynamic-members block styling
+ */
+
+.wp-block-bp-follow-following,
+.wp-block-bp-follow-followers {
+	/* Item options (See all link) */
+}
+
+.wp-block-bp-follow-following .item-options,
+.wp-block-bp-follow-followers .item-options {
+	font-size: 0.9em;
+	margin: 0 0 1em;
+	padding: 0.5em 0;
+}
+
+.wp-block-bp-follow-following .item-options a.selected,
+.wp-block-bp-follow-followers .item-options a.selected {
+	font-weight: 600;
+}
+
+/* Member list */
+.wp-block-bp-follow-following ul.item-list,
+.wp-block-bp-follow-followers ul.item-list {
+	list-style: none;
+	margin: 1em 0;
+	padding-left: 0;
+}
+
+.wp-block-bp-follow-following ul.item-list li,
+.wp-block-bp-follow-followers ul.item-list li {
+	margin-bottom: 1em;
+}
+
+.wp-block-bp-follow-following ul.item-list li::before,
+.wp-block-bp-follow-following ul.item-list li::after,
+.wp-block-bp-follow-followers ul.item-list li::before,
+.wp-block-bp-follow-followers ul.item-list li::after {
+	content: " ";
+	display: table;
+}
+
+.wp-block-bp-follow-following ul.item-list li::after,
+.wp-block-bp-follow-followers ul.item-list li::after {
+	clear: both;
+}
+
+.wp-block-bp-follow-following ul.item-list li .item-avatar,
+.wp-block-bp-follow-followers ul.item-list li .item-avatar {
+	float: left;
+	width: 60px;
+}
+
+.wp-block-bp-follow-following ul.item-list li .item,
+.wp-block-bp-follow-followers ul.item-list li .item {
+	margin-left: 70px;
+}

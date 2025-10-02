@@ -35,6 +35,12 @@ function bp_follow_init() {
 	require_once BP_FOLLOW_DIR . '/autoload.php';
 
 	add_action( 'bp_loaded', 'bp_follow_register_component', 5 );
+
+	// Register WP-CLI commands.
+	if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		require_once BP_FOLLOW_DIR . '/includes/cli/class-follow-command.php';
+		WP_CLI::add_command( 'bp follow', 'BP_Follow_CLI_Command' );
+	}
 }
 add_action( 'bp_include', 'bp_follow_init' );
 

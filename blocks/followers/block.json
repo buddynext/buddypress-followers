@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bp-follow/followers",
+	"version": "1.0.0",
+	"title": "My Followers",
+	"category": "buddypress",
+	"icon": "admin-users",
+	"description": "Show a list of member avatars that follow the logged-in user.",
+	"keywords": ["buddypress", "follow", "followers", "users", "members", "community"],
+	"textDomain": "buddypress-followers",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "My Followers"
+		},
+		"maxUsers": {
+			"type": "number",
+			"default": 16
+		},
+		"userId": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css"
+}

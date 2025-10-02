@@ -19,7 +19,7 @@ A modern, developer-friendly BuddyPress plugin that adds Twitter-style follow fu
 - Follow buttons in activity streams
 - Following/Followers profile tabs
 - WP Toolbar integration
-- Widgets (Following widget)
+- Widgets (Following widget, Followers widget)
 
 ### Developer Features
 - Modern OOP architecture with namespaces
@@ -362,16 +362,41 @@ The plugin uses WordPress object caching:
 
 - `bp_follow_data` - Follow relationships and counts
 
-## Widgets
+## Widgets & Blocks
 
 ### Following Widget
 
-Displays a list of users that the displayed user is following.
+Displays a list of users that the logged-in user is following.
 
-**Usage:**
+**Widget Usage:**
 1. Go to Appearance > Widgets
-2. Add "Following" widget to a sidebar
-3. Configure widget settings
+2. Add "(BP Follow) Users I'm Following" widget to a sidebar
+3. Configure title and max users to display
+
+**Block Usage (Gutenberg):**
+1. In the block editor, click the (+) button
+2. Search for "Users I'm Following"
+3. Add the block and configure settings in the sidebar:
+   - **Title**: Custom heading for the block
+   - **Max members to show**: Number of users to display (1-50)
+   - **User ID**: Leave as 0 for logged-in user, or enter a specific user ID to show that user's following list
+
+### Followers Widget
+
+Displays a list of users who follow the logged-in user.
+
+**Widget Usage:**
+1. Go to Appearance > Widgets
+2. Add "(BP Follow) My Followers" widget to a sidebar
+3. Configure title and max users to display
+
+**Block Usage (Gutenberg):**
+1. In the block editor, click the (+) button
+2. Search for "My Followers"
+3. Add the block and configure settings in the sidebar:
+   - **Title**: Custom heading for the block
+   - **Max members to show**: Number of users to display (1-50)
+   - **User ID**: Leave as 0 for logged-in user, or enter a specific user ID to show that user's followers
 
 ## Theme Compatibility
 
@@ -478,6 +503,17 @@ For sites with many followers:
 - ✅ Fixed follow button URLs to work with correct leader_id in all contexts
 - ✅ Registered start/stop actions as hidden subnav items to prevent 404s
 - ✅ Updated JavaScript to support AJAX-loaded member lists (friends tab)
+- ✅ Added .gitignore file for version control
+- ✅ Added composer.json with dev dependencies (PHPCS, PHPUnit, PHPCompatibility)
+- ✅ Added comprehensive WP-CLI commands (start, stop, count, list, sync-counts, delete-all, stats)
+- ✅ Added "My Followers" widget to complement existing "Following" widget
+- ✅ Added Gutenberg blocks for Following and Followers
+  - Displays in "Community blocks" category with other BuddyPress blocks
+  - Shows member cards with avatar, name, and last active time
+  - Configurable title, max members (1-50), and user ID
+  - Supports logged-in user or specific user ID
+  - "See all" link to full followers/following page
+  - Matches BuddyPress member list styling
 - ✅ Improved developer experience
 
 ## Support
