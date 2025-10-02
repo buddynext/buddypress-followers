@@ -1,23 +1,36 @@
 === BuddyPress Follow ===
-Contributors: apeatling, r-a-y
-Tags: buddypress, following, followers, connections
-Requires at least: WP 3.2 / BP 1.5
-Tested up to: WP 4.4.x / BP 2.5.x
-Stable tag: 1.2.2
+Contributors: apeatling, r-a-y, vapvarun
+Tags: buddypress, following, followers, connections, social
+Requires at least: WordPress 5.0, BuddyPress 14.4
+Tested up to: WordPress 6.7, BuddyPress 15.0
+Stable tag: 2.0.0
+Requires PHP: 7.4
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Follow members on your BuddyPress site with this nifty plugin.
+Add Twitter-style follow functionality to your BuddyPress community. Users can follow each other without requiring mutual friendship acceptance.
 
-The plugin works similar to the friends component, however the connection does not need to be accepted by the person being followed.  Just like Twitter!
+**Core Features:**
 
-This plugin adds:
+* **Follow/Unfollow** - One-way follower relationships (just like Twitter)
+* **Profile Tabs** - Following & Followers lists on user profiles
+* **Follow Buttons** - On profiles, member directory, and activity streams
+* **AJAX Updates** - Real-time follow/unfollow without page reload
+* **Activity Filtering** - "Following" tab to see activity from followed users
+* **Notifications** - BuddyPress and email notifications for new followers
+* **REST API** - Complete RESTful API with v1/v2 auto-detection
+* **Widgets** - Following widget for sidebars
+* **WP Toolbar** - Quick access menu items
 
-* Following / Followers tabs to user profile pages
-* Follow / Unfollow buttons on user profile pages and in the members directory
-* A new "Following" activity directory tab
-* An "Activity > Following" subnav tab to a user's profile page
-* Menu items to the WP Toolbar
+**Modern Architecture:**
+
+* PSR-4 autoloading with namespaces
+* Service layer pattern with dependency injection
+* Comprehensive hooks and filters for developers
+* Theme compatibility layer
+* WordPress 6.7+ translation loading compliance
 
 **Translations**
 
@@ -40,20 +53,60 @@ For bug reports or to add patches or translation files, visit the [BP Follow Git
 
 Check out the [BP Follow wiki](https://github.com/r-a-y/buddypress-followers/wiki).
 
+== For Developers ==
+
+**Helper Functions:**
+
+`bp_follow_start_following()` - Follow a user
+`bp_follow_stop_following()` - Unfollow a user
+`bp_follow_is_following()` - Check if following
+`bp_follow_get_followers()` - Get followers list
+`bp_follow_get_following()` - Get following list
+`bp_follow_get_counts()` - Get follower/following counts
+`bp_follow_add_follow_button()` - Display follow button
+
+**Service Layer:**
+
+Access services via dependency injection:
+`$service = bp_follow_service( '\\Followers\\Service\\FollowService' );`
+
+Available services: FollowService, ButtonService, AjaxService, NotificationService, EmailService
+
+**REST API Endpoints:**
+
+Auto-detects v1 (BP < 15.0) or v2 (BP >= 15.0):
+
+* `GET /wp-json/buddypress/v1/follow/{user_id}/followers` - Get followers
+* `GET /wp-json/buddypress/v1/follow/{user_id}/following` - Get following
+* `GET /wp-json/buddypress/v1/follow/{user_id}/counts` - Get counts
+* `POST /wp-json/buddypress/v1/follow/{leader_id}` - Follow user (auth required)
+* `DELETE /wp-json/buddypress/v1/follow/{leader_id}` - Unfollow user (auth required)
+
+**Hooks:**
+
+Actions: `bp_follow_start_following`, `bp_follow_stop_following`, `bp_follow_loaded`, `bp_follow_setup_nav`
+
+Filters: `bp_follow_get_add_follow_button`, `bp_follow_following_nav_position`, `bp_follow_enable_users`, `bp_follow_enable_activity`
+
+See README.md for complete documentation.
+
 == Changelog ==
 
-= 1.3.0 =
-* Add object caching support.
-* Add ability to follow sites in WordPress multisite (only available in BuddyPress 2.0+)
-* Add support for BP's Suggestions API (only available in BuddyPress 2.1+)
-* Allow plugin to work in symlinked environments
-* Fix marking notifications as read for bp-default themes
-* Add Spanish translation (props saik003)
-* Developer: Add 'following' scope to activity loop (only available in BuddyPress 2.2+)
-* Developer: Add new `'follow_type'` and `'date_recorded'` database columns
-* Developer: Add ability to sort following and followers query by DB column
-* Developer: Add ability to query following and followers by WP's date query
-* Developer: Add ability to disable follow users module
+= 2.0.0 =
+* **Major modernization release** - Complete plugin restructure and rewrite
+* Add PSR-4 autoloading with namespaced classes
+* Add service layer architecture with dependency injection container
+* Add REST API v1/v2 auto-detection (BP 14.4-15.0+ compatibility)
+* Fix WordPress 6.7+ translation loading compliance
+* Fix navigation 404 issues on Following/Followers pages
+* Remove multisite/blog following support (focused on user following)
+* Remove duplicate code (15% code reduction)
+* Improve file structure: `_inc/` → `includes/`, organized by feature
+* Improve developer experience with modern architecture
+* Fix ButtonService not being instantiated
+* Fix syntax errors in helper functions
+* Add comprehensive README.md documentation
+* Update minimum requirements: PHP 7.4+, BP 14.4+
 
 = 1.2.2 =
 * Fix deprecated notice in widget for those using WordPress 4.3+.
