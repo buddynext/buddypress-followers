@@ -77,6 +77,14 @@ class EmailService {
 		$has_notified[] = $r['leader_id'];
 		bp_update_user_meta( $r['follower_id'], 'bp_follow_has_notified', $has_notified );
 
+		// Check if user prefers digest emails.
+		$digest_service = bp_follow_service( '\\Followers\\Service\\DigestService' );
+		if ( $digest_service && $digest_service->is_digest_enabled( $r['leader_id'] ) ) {
+			// Queue for digest instead of sending immediately.
+			return $digest_service->queue_follower( $r['leader_id'], $r['follower_id'] );
+		}
+
+		// Send immediate email notification.
 		$follower_url = add_query_arg( 'bpf_read', 1, bp_follow_get_user_url( $r['follower_id'] ) );
 
 		$unsubscribe_args = array(

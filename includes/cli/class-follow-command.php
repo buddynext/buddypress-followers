@@ -478,4 +478,34 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 
 		WP_CLI::line( '' );
 	}
+
+	/**
+	 * Send pending digest emails manually.
+	 *
+	 * Processes all queued digest notifications and sends emails to users.
+	 * Normally handled by cron, but useful for testing or manual execution.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp bp follow send-digests
+	 *
+	 * @since 2.0.0
+	 *
+	 * @subcommand send-digests
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments (unused).
+	 */
+	public function send_digests( $args, $assoc_args ) {
+		$service = bp_follow_service( '\\Followers\\Service\\DigestService' );
+
+		if ( ! $service ) {
+			WP_CLI::error( 'DigestService not available.' );
+			return;
+		}
+
+		WP_CLI::line( 'Processing digest emails...' );
+		$sent = $service->process_all_digests();
+		WP_CLI::success( sprintf( 'Sent %d digest emails.', $sent ) );
+	}
 }

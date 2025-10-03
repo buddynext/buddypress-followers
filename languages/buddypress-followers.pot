@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-02T20:17:59+00:00\n"
+"POT-Creation-Date: 2025-10-03T05:29:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: buddypress-followers\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Andy Peatling, r-a-y, vapvarun"
 msgstr ""
 
-#: buddypress-followers.php:56
+#: buddypress-followers.php:91
 msgid "BuddyPress Follow requires BuddyPress 14.4.0 or newer."
 msgstr ""
 
@@ -119,32 +119,86 @@ msgstr ""
 
 #. translators: do not remove {} brackets or translate its contents.
 #: includes/emails.php:23
-msgid "[{{{site.name}}}] {{follower.name}} is now following you"
+msgid "{{follower.name}} is now following you"
 msgstr ""
 
 #. translators: do not remove {} brackets or translate its contents.
 #: includes/emails.php:25
 msgid ""
-"<a href=\"{{{follower.url}}}\">{{follower.name}}</a> is now following your activity.\n"
+"<h2>{{follower.name}} started following you</h2>\n"
 "\n"
-"To view {{follower.name}}'s profile, visit: <a href=\"{{{follower.url}}}\">{{{follower.url}}}</a>"
+"<p>You have a new follower on {{{site.name}}}!</p>\n"
+"\n"
+"<table style=\"margin: 20px 0;\" cellpadding=\"10\">\n"
+"<tr>\n"
+"<td style=\"background: #f5f5f5; border-radius: 5px;\">\n"
+"<p style=\"margin:0; font-size: 16px;\"><strong>{{follower.name}}</strong></p>\n"
+"<p style=\"margin: 5px 0 0 0; color: #666;\">@{{follower.name}}</p>\n"
+"</td>\n"
+"</tr>\n"
+"</table>\n"
+"\n"
+"<p><a href=\"{{{follower.url}}}\" style=\"display: inline-block; padding: 10px 20px; background: #1da1f2; color: white; text-decoration: none; border-radius: 5px;\">View Profile</a> &nbsp; <a href=\"{{{followers.url}}}\" style=\"display: inline-block; padding: 10px 20px; background: #657786; color: white; text-decoration: none; border-radius: 5px;\">See All Followers</a></p>"
 msgstr ""
 
 #. translators: do not remove {} brackets or translate its contents.
 #: includes/emails.php:27
 msgid ""
-"{{follower.name}} is now following your activity.\n"
+"{{follower.name}} started following you on {{{site.name}}}.\n"
 "\n"
-"To view {{follower.name}}'s profile, visit: {{{follower.url}}}"
+"View their profile: {{{follower.url}}}\n"
+"\n"
+"See all your followers: {{{followers.url}}}"
 msgstr ""
 
-#: includes/emails.php:43
-#: includes/user/notifications.php:175
+#. translators: do not remove {} brackets or translate its contents.
+#: includes/emails.php:32
+msgid "You have {{follower.count}} new followers {{digest.period}}"
+msgstr ""
+
+#. translators: do not remove {} brackets or translate its contents.
+#: includes/emails.php:34
+msgid ""
+"<h2>{{follower.count}} new followers {{digest.period}}</h2>\n"
+"\n"
+"<p>Your network is growing! Here are your new followers on {{{site.name}}}:</p>\n"
+"\n"
+"<table style=\"margin: 20px 0; width: 100%;\" cellpadding=\"10\">\n"
+"<tr>\n"
+"<td style=\"background: #f5f5f5; border-radius: 5px; padding: 15px;\">\n"
+"<p style=\"margin:0; line-height: 1.6;\">{{follower.names}}</p>\n"
+"</td>\n"
+"</tr>\n"
+"</table>\n"
+"\n"
+"<p><a href=\"{{{followers.url}}}\" style=\"display: inline-block; padding: 12px 24px; background: #1da1f2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;\">View All {{follower.count}} Followers</a></p>\n"
+"\n"
+"<p style=\"color: #657786; font-size: 13px; margin-top: 30px;\">You're receiving this because you enabled digest notifications. <a href=\"{{{settings.url}}}\">Change your preferences</a> or {{{unsubscribe}}}.</p>"
+msgstr ""
+
+#. translators: do not remove {} brackets or translate its contents.
+#: includes/emails.php:36
+msgid ""
+"{{follower.count}} new followers {{digest.period}} on {{{site.name}}}\n"
+"\n"
+"{{follower.names_full}}\n"
+"\n"
+"View all your followers: {{{followers.url}}}\n"
+"\n"
+"Manage your email preferences: {{{settings.url}}}"
+msgstr ""
+
+#: includes/emails.php:52
+#: includes/user/notifications.php:183
 msgid "A member starts following your activity"
 msgstr ""
 
+#: includes/emails.php:53
+msgid "Daily or weekly digest of new followers"
+msgstr ""
+
 #: includes/functions.php:433
-#: src/Component.php:156
+#: src/Component.php:157
 msgid "Follow"
 msgstr ""
 
@@ -275,6 +329,22 @@ msgstr ""
 msgid "This user isn't following anyone yet."
 msgstr ""
 
+#: includes/user/notifications.php:190
+msgid "Send follower notifications as digest"
+msgstr ""
+
+#: includes/user/notifications.php:199
+msgid "Digest frequency:"
+msgstr ""
+
+#: includes/user/notifications.php:201
+msgid "Daily"
+msgstr ""
+
+#: includes/user/notifications.php:202
+msgid "Weekly"
+msgstr ""
+
 #: includes/user/screens.php:203
 msgid "Order By:"
 msgstr ""
@@ -370,6 +440,14 @@ msgstr ""
 #: src/Service/ButtonService.php:95
 msgctxt "Button"
 msgid "Follow"
+msgstr ""
+
+#: src/Service/DigestService.php:110
+msgid "today"
+msgstr ""
+
+#: src/Service/DigestService.php:110
+msgid "this week"
 msgstr ""
 
 #: blocks/followers/index.js:51

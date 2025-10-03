@@ -499,7 +499,8 @@ For sites with many followers:
 
 - **Gutenberg Block Editor Support** - Add "Users I'm Following" and "My Followers" blocks to any page or post using the block editor. Find them in the "Community blocks" category! Blocks show followers or following for any user with avatars, names, last active time, customizable titles, and "See all" links.
 - **New "My Followers" Widget** - Display users who follow you in any widget area, complementing the existing "Following" widget
-- **WP-CLI Commands** - Site administrators can now manage follow relationships from the command line with bulk operations, statistics, and sync counts
+- **Email Digest System** - Reduce email fatigue with daily or weekly digest summaries of new followers. Users can choose instant notifications or digest mode from Settings > Notifications. Automatic cron scheduling sends digests at 9:00 AM.
+- **WP-CLI Commands** - Site administrators can now manage follow relationships from the command line with bulk operations, statistics, digest sending, and sync counts
 
 **Improvements**
 

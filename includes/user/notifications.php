@@ -168,6 +168,14 @@ function bp_follow_user_screen_notification_settings() {
 		$notify = 'yes';
 	}
 
+	if ( ! $digest = bp_get_user_meta( bp_displayed_user_id(), 'notification_follows_digest', true ) ) {
+		$digest = 'no';
+	}
+
+	if ( ! $frequency = bp_get_user_meta( bp_displayed_user_id(), 'notification_follows_digest_frequency', true ) ) {
+		$frequency = 'weekly';
+	}
+
 ?>
 
 	<tr>
@@ -176,6 +184,38 @@ function bp_follow_user_screen_notification_settings() {
 		<td class="yes"><input type="radio" name="notifications[notification_starts_following]" value="yes" <?php checked( $notify, 'yes', true ) ?>/></td>
 		<td class="no"><input type="radio" name="notifications[notification_starts_following]" value="no" <?php checked( $notify, 'no', true ) ?>/></td>
 	</tr>
+
+	<tr>
+		<td></td>
+		<td><?php esc_html_e( 'Send follower notifications as digest', 'buddypress-followers' ) ?></td>
+		<td class="yes"><input type="radio" name="notifications[notification_follows_digest]" value="yes" <?php checked( $digest, 'yes', true ) ?>/></td>
+		<td class="no"><input type="radio" name="notifications[notification_follows_digest]" value="no" <?php checked( $digest, 'no', true ) ?>/></td>
+	</tr>
+
+	<tr id="bp-follow-digest-frequency" style="<?php echo 'yes' !== $digest ? 'display:none;' : ''; ?>">
+		<td></td>
+		<td colspan="3">
+			<label>
+				<?php esc_html_e( 'Digest frequency:', 'buddypress-followers' ) ?>
+				<select name="notifications[notification_follows_digest_frequency]">
+					<option value="daily" <?php selected( $frequency, 'daily' ) ?>><?php esc_html_e( 'Daily', 'buddypress-followers' ) ?></option>
+					<option value="weekly" <?php selected( $frequency, 'weekly' ) ?>><?php esc_html_e( 'Weekly', 'buddypress-followers' ) ?></option>
+				</select>
+			</label>
+		</td>
+	</tr>
+
+	<script>
+	jQuery(document).ready(function($) {
+		$('input[name="notifications[notification_follows_digest]"]').on('change', function() {
+			if ($(this).val() === 'yes' && $(this).is(':checked')) {
+				$('#bp-follow-digest-frequency').show();
+			} else if ($(this).val() === 'no' && $(this).is(':checked')) {
+				$('#bp-follow-digest-frequency').hide();
+			}
+		});
+	});
+	</script>
 
 <?php
 }

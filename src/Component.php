@@ -14,6 +14,7 @@ use Followers\Service\NotificationService;
 use Followers\Service\AjaxService;
 use Followers\Service\EmailService;
 use Followers\Service\ButtonService;
+use Followers\Service\DigestService;
 use Followers\REST\FollowController;
 use stdClass;
 use function add_action;
@@ -166,6 +167,7 @@ class Component extends BP_Component {
 		$this->container->set( AjaxService::class, new AjaxService() );
 		$this->container->set( EmailService::class, new EmailService() );
 		$this->container->set( ButtonService::class, new ButtonService() );
+		$this->container->set( DigestService::class, new DigestService() );
 		$this->container->set( FollowController::class, new FollowController( $follow_service ) );
 	}
 
@@ -179,6 +181,7 @@ class Component extends BP_Component {
 		require $this->path . '/functions.php';
 		require $this->path . '/blocks.php';
 		require $this->path . '/emails.php';
+		require $this->path . '/digest.php';
 
 		if ( true === (bool) apply_filters( 'bp_follow_enable_users', true ) ) {
 			require $this->path . '/user/hooks.php';

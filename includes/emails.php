@@ -20,11 +20,20 @@ defined( 'ABSPATH' ) || exit;
 function bp_follow_register_email_schemas( $emails = array() ) {
 	$emails['bp-follow-new-follow'] = array(
 		/* translators: do not remove {} brackets or translate its contents. */
-		'post_title'   => __( '[{{{site.name}}}] {{follower.name}} is now following you', 'buddypress-followers' ),
+		'post_title'   => __( '{{follower.name}} is now following you', 'buddypress-followers' ),
 		/* translators: do not remove {} brackets or translate its contents. */
-		'post_content' => __( "<a href=\"{{{follower.url}}}\">{{follower.name}}</a> is now following your activity.\n\nTo view {{follower.name}}'s profile, visit: <a href=\"{{{follower.url}}}\">{{{follower.url}}}</a>", 'buddypress-followers' ),
+		'post_content' => __( "<h2>{{follower.name}} started following you</h2>\n\n<p>You have a new follower on {{{site.name}}}!</p>\n\n<table style=\"margin: 20px 0;\" cellpadding=\"10\">\n<tr>\n<td style=\"background: #f5f5f5; border-radius: 5px;\">\n<p style=\"margin:0; font-size: 16px;\"><strong>{{follower.name}}</strong></p>\n<p style=\"margin: 5px 0 0 0; color: #666;\">@{{follower.name}}</p>\n</td>\n</tr>\n</table>\n\n<p><a href=\"{{{follower.url}}}\" style=\"display: inline-block; padding: 10px 20px; background: #1da1f2; color: white; text-decoration: none; border-radius: 5px;\">View Profile</a> &nbsp; <a href=\"{{{followers.url}}}\" style=\"display: inline-block; padding: 10px 20px; background: #657786; color: white; text-decoration: none; border-radius: 5px;\">See All Followers</a></p>", 'buddypress-followers' ),
 		/* translators: do not remove {} brackets or translate its contents. */
-		'post_excerpt' => __( "{{follower.name}} is now following your activity.\n\nTo view {{follower.name}}'s profile, visit: {{{follower.url}}}", 'buddypress-followers' ),
+		'post_excerpt' => __( "{{follower.name}} started following you on {{{site.name}}}.\n\nView their profile: {{{follower.url}}}\n\nSee all your followers: {{{followers.url}}}", 'buddypress-followers' ),
+	);
+
+	$emails['bp-follow-digest'] = array(
+		/* translators: do not remove {} brackets or translate its contents. */
+		'post_title'   => __( 'You have {{follower.count}} new followers {{digest.period}}', 'buddypress-followers' ),
+		/* translators: do not remove {} brackets or translate its contents. */
+		'post_content' => __( "<h2>{{follower.count}} new followers {{digest.period}}</h2>\n\n<p>Your network is growing! Here are your new followers on {{{site.name}}}:</p>\n\n<table style=\"margin: 20px 0; width: 100%;\" cellpadding=\"10\">\n<tr>\n<td style=\"background: #f5f5f5; border-radius: 5px; padding: 15px;\">\n<p style=\"margin:0; line-height: 1.6;\">{{follower.names}}</p>\n</td>\n</tr>\n</table>\n\n<p><a href=\"{{{followers.url}}}\" style=\"display: inline-block; padding: 12px 24px; background: #1da1f2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;\">View All {{follower.count}} Followers</a></p>\n\n<p style=\"color: #657786; font-size: 13px; margin-top: 30px;\">You're receiving this because you enabled digest notifications. <a href=\"{{{settings.url}}}\">Change your preferences</a> or {{{unsubscribe}}}.</p>", 'buddypress-followers' ),
+		/* translators: do not remove {} brackets or translate its contents. */
+		'post_excerpt' => __( "{{follower.count}} new followers {{digest.period}} on {{{site.name}}}\n\n{{follower.names_full}}\n\nView all your followers: {{{followers.url}}}\n\nManage your email preferences: {{{settings.url}}}", 'buddypress-followers' ),
 	);
 
 	return $emails;
@@ -41,6 +50,7 @@ add_filter( 'bp_email_get_schema', 'bp_follow_register_email_schemas' );
  */
 function bp_follow_register_email_type_descriptions( $descriptions = array() ) {
 	$descriptions['bp-follow-new-follow'] = __( 'A member starts following your activity', 'buddypress-followers' );
+	$descriptions['bp-follow-digest']     = __( 'Daily or weekly digest of new followers', 'buddypress-followers' );
 
 	return $descriptions;
 }

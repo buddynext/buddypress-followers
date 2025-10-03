@@ -99,7 +99,8 @@ See README.md for complete documentation.
 **New Features**
 * **Gutenberg Block Editor Support** - Add "Users I'm Following" and "My Followers" blocks to pages/posts with customizable settings
 * **New "My Followers" Widget** - Display users who follow you in any widget area
-* **WP-CLI Commands** - Manage follow relationships from command line with bulk operations, statistics, and sync counts
+* **Email Digest System** - Reduce email fatigue with daily/weekly digests of new followers. Users choose instant or digest mode from Settings > Notifications with automatic cron scheduling
+* **WP-CLI Commands** - Manage follows via command line: bulk operations, statistics, send digests, and sync counts (8 commands total)
 * **BuddyPress Core Email System** - Migrated to BP email system with customizable HTML templates (Dashboard > Emails). Templates use tokens like {{follower.name}} and automatically install on activation
 
 **Improvements**
