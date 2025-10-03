@@ -10,6 +10,25 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Add custom cron schedules for digest emails.
+ *
+ * @since 2.0.0
+ *
+ * @param array $schedules Existing cron schedules.
+ * @return array Modified schedules.
+ */
+function bp_follow_add_cron_schedules( $schedules ) {
+	if ( ! isset( $schedules['weekly'] ) ) {
+		$schedules['weekly'] = array(
+			'interval' => 604800, // 7 days in seconds.
+			'display'  => __( 'Once Weekly', 'buddypress-followers' ),
+		);
+	}
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'bp_follow_add_cron_schedules' );
+
+/**
  * Schedule digest cron jobs.
  *
  * @since 2.0.0
@@ -26,17 +45,6 @@ function bp_follow_schedule_digest_cron() {
 	}
 }
 add_action( 'bp_init', 'bp_follow_schedule_digest_cron' );
-
-/**
- * Clear digest cron jobs on plugin deactivation.
- *
- * @since 2.0.0
- */
-function bp_follow_clear_digest_cron() {
-	wp_clear_scheduled_hook( 'bp_follow_send_daily_digests' );
-	wp_clear_scheduled_hook( 'bp_follow_send_weekly_digests' );
-}
-register_deactivation_hook( BP_FOLLOW_DIR . '/buddypress-followers.php', 'bp_follow_clear_digest_cron' );
 
 /**
  * Send daily digests.

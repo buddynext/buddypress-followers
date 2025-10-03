@@ -491,6 +491,50 @@ For sites with many followers:
 - Prepared statements for all database queries
 - Capability checks on admin functions
 
+## Translation
+
+### Generating POT File
+
+The plugin includes Grunt configuration for generating translation files.
+
+**Using WP-CLI (Recommended):**
+```bash
+wp i18n make-pot . languages/buddypress-followers.pot
+```
+
+**Using Grunt:**
+```bash
+# Install dependencies (first time only)
+npm install
+
+# Generate POT file
+npm run makepot
+
+# Or use grunt directly
+grunt makepot
+
+# Watch for changes and auto-generate
+npm run watch
+```
+
+**Available Grunt Tasks:**
+- `grunt makepot` - Generate translation POT file
+- `grunt build` - Run all build tasks (currently just makepot)
+- `grunt watch` - Watch PHP files and regenerate POT on changes
+
+### Translating the Plugin
+
+1. Generate the POT file using one of the methods above
+2. Use a translation tool like [Poedit](https://poedit.net/) to create language files
+3. Place `.po` and `.mo` files in the `languages/` directory
+4. WordPress will automatically load translations based on site language
+
+### Contributing Translations
+
+Translations are welcome! Please submit them via:
+- [GitHub Pull Request](https://github.com/r-a-y/buddypress-followers/pulls)
+- [WordPress.org Translation Platform](https://translate.wordpress.org/projects/wp-plugins/buddypress-followers/)
+
 ## Changelog
 
 ### 2.0.0 - Major Update

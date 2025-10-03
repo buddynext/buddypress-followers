@@ -98,6 +98,7 @@ class EmailService {
 				'follower.name' => bp_core_get_user_displayname( $r['follower_id'] ),
 				'follower.url'  => $follower_url,
 				'leader.id'     => $r['leader_id'],
+				'followers.url' => bp_follow_get_user_url( $r['leader_id'], array( buddypress()->follow->followers->slug ) ),
 				'unsubscribe'   => esc_url( bp_email_get_unsubscribe_link( $unsubscribe_args ) ),
 			),
 		);

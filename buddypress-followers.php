@@ -61,6 +61,18 @@ function bp_follow_activation() {
 register_activation_hook( __FILE__, 'bp_follow_activation' );
 
 /**
+ * Plugin deactivation hook.
+ *
+ * @since 2.0.0
+ */
+function bp_follow_deactivation() {
+	// Clear digest cron jobs.
+	wp_clear_scheduled_hook( 'bp_follow_send_daily_digests' );
+	wp_clear_scheduled_hook( 'bp_follow_send_weekly_digests' );
+}
+register_deactivation_hook( __FILE__, 'bp_follow_deactivation' );
+
+/**
  * Install emails after activation.
  *
  * @since 2.0.0

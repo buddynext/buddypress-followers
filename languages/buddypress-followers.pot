@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-03T05:29:43+00:00\n"
+"POT-Creation-Date: 2025-10-03T09:12:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: buddypress-followers\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Andy Peatling, r-a-y, vapvarun"
 msgstr ""
 
-#: buddypress-followers.php:91
+#: buddypress-followers.php:103
 msgid "BuddyPress Follow requires BuddyPress 14.4.0 or newer."
 msgstr ""
 
@@ -115,6 +115,10 @@ msgstr ""
 #: blocks/followers/index.js:15
 #: blocks/followers/index.js:94
 msgid "My Followers"
+msgstr ""
+
+#: includes/digest.php:24
+msgid "Once Weekly"
 msgstr ""
 
 #. translators: do not remove {} brackets or translate its contents.
@@ -442,11 +446,17 @@ msgctxt "Button"
 msgid "Follow"
 msgstr ""
 
+#. translators: %d: number of additional followers not listed
 #: src/Service/DigestService.php:110
+#, php-format
+msgid " and %d others"
+msgstr ""
+
+#: src/Service/DigestService.php:119
 msgid "today"
 msgstr ""
 
-#: src/Service/DigestService.php:110
+#: src/Service/DigestService.php:119
 msgid "this week"
 msgstr ""
 

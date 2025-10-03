@@ -101,14 +101,24 @@ class DigestService {
 			'notification_type' => 'bp-follow-digest',
 		);
 
+		// Build "and X others" text for follower names.
+		$display_names = array_slice( $follower_names, 0, 5 );
+		$others_count  = $count - 5;
+		$names_text    = implode( ', ', $display_names );
+		if ( $others_count > 0 ) {
+			/* translators: %d: number of additional followers not listed */
+			$names_text .= sprintf( __( ' and %d others', 'buddypress-followers' ), $others_count );
+		}
+
 		$email_args = array(
 			'tokens' => array(
 				'follower.count'       => $count,
-				'follower.names'       => implode( ', ', array_slice( $follower_names, 0, 5 ) ),
+				'follower.names'       => $names_text,
 				'follower.names_full'  => implode( "\n", $follower_names ),
 				'follower.links'       => implode( "\n", $follower_links ),
 				'digest.period'        => $frequency === 'daily' ? __( 'today', 'buddypress-followers' ) : __( 'this week', 'buddypress-followers' ),
 				'followers.url'        => bp_follow_get_user_url( $user_id, array( buddypress()->follow->followers->slug ) ),
+				'settings.url'         => bp_core_get_user_domain( $user_id ) . bp_get_settings_slug() . '/notifications/',
 				'unsubscribe'          => esc_url( bp_email_get_unsubscribe_link( $unsubscribe_args ) ),
 			),
 		);

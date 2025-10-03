@@ -1,0 +1,33 @@
+{
+  "name": "buddypress-followers",
+  "version": "2.0.0",
+  "description": "Add Twitter-style follow functionality to your BuddyPress community",
+  "main": "buddypress-followers.php",
+  "scripts": {
+    "makepot": "grunt makepot",
+    "build": "grunt build",
+    "watch": "grunt watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/r-a-y/buddypress-followers.git"
+  },
+  "keywords": [
+    "buddypress",
+    "follow",
+    "followers",
+    "social",
+    "wordpress"
+  ],
+  "author": "Andy Peatling, r-a-y, vapvarun",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/r-a-y/buddypress-followers/issues"
+  },
+  "homepage": "https://github.com/r-a-y/buddypress-followers",
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-wp-i18n": "^1.0.3",
+    "load-grunt-tasks": "^5.1.0"
+  }
+}
