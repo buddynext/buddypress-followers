@@ -20,8 +20,11 @@ Add Twitter-style follow functionality to your BuddyPress community. Users can f
 * **AJAX Updates** - Real-time follow/unfollow without page reload
 * **Activity Filtering** - "Following" tab to see activity from followed users
 * **Notifications** - BuddyPress and email notifications for new followers
+* **Customizable Emails** - Uses BuddyPress Core email system with HTML templates (Dashboard > Emails)
+* **Gutenberg Blocks** - "Users I'm Following" and "My Followers" blocks for pages/posts
+* **Widgets** - "Following" and "Followers" widgets for sidebars
+* **WP-CLI Commands** - Manage follows from command line
 * **REST API** - Complete RESTful API with v1/v2 auto-detection
-* **Widgets** - Following widget for sidebars
 * **WP Toolbar** - Quick access menu items
 
 **Modern Architecture:**
@@ -93,20 +96,28 @@ See README.md for complete documentation.
 == Changelog ==
 
 = 2.0.0 =
-* **Major modernization release** - Complete plugin restructure and rewrite
-* Add PSR-4 autoloading with namespaced classes
-* Add service layer architecture with dependency injection container
-* Add REST API v1/v2 auto-detection (BP 14.4-15.0+ compatibility)
-* Fix WordPress 6.7+ translation loading compliance
-* Fix navigation 404 issues on Following/Followers pages
-* Remove multisite/blog following support (focused on user following)
-* Remove duplicate code (15% code reduction)
-* Improve file structure: `_inc/` → `includes/`, organized by feature
-* Improve developer experience with modern architecture
-* Fix ButtonService not being instantiated
-* Fix syntax errors in helper functions
-* Add comprehensive README.md documentation
-* Update minimum requirements: PHP 7.4+, BP 14.4+
+**New Features**
+* **Gutenberg Block Editor Support** - Add "Users I'm Following" and "My Followers" blocks to pages/posts with customizable settings
+* **New "My Followers" Widget** - Display users who follow you in any widget area
+* **WP-CLI Commands** - Manage follow relationships from command line with bulk operations, statistics, and sync counts
+* **BuddyPress Core Email System** - Migrated to BP email system with customizable HTML templates (Dashboard > Emails). Templates use tokens like {{follower.name}} and automatically install on activation
+
+**Improvements**
+* **Better Follow Buttons** - AJAX follow/unfollow works smoothly in all locations (member directory, profiles, followers/following lists)
+* **Fixed Page Not Found Errors** - Resolved 404 errors on followers/following pages
+* **Modern Grid Layout** - Beautiful grid display with BP Nouveau theme
+* **Faster Performance** - 15% code reduction with cleaner architecture
+* **WordPress 6.7+ Compatible** - Fixed translation loading for latest WordPress
+
+**For Developers**
+* Modern PHP architecture with PSR-4 autoloading and namespaced classes
+* Service layer pattern with dependency injection container
+* REST API v1/v2 auto-detection (BP 14.4-15.0+ compatibility)
+* Comprehensive hooks and filters for customization
+* Removed legacy multisite/blog following support (focused on user following)
+* Improved file structure: `_inc/` → `includes/`, organized by feature
+* Comprehensive PHPDoc comments and translator comments
+* Updated minimum requirements: PHP 7.4+, BP 14.4+
 
 = 1.2.2 =
 * Fix deprecated notice in widget for those using WordPress 4.3+.

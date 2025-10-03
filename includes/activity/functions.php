@@ -234,6 +234,7 @@ function bp_follow_activity_button( $args = array() ) {
 		if ( empty( $count ) ) {
 			$link_text = _x( 'Unfollow', 'Follow activity button', 'buddypress-followers' );
 		} else {
+			/* translators: %s: follower count */
 			$link_text = sprintf( _x( 'Unfollow %s', 'Follow activity button', 'buddypress-followers' ), '<span>' . $count . '</span>' );
 		}
 
@@ -256,6 +257,7 @@ function bp_follow_activity_button( $args = array() ) {
 		if ( empty( $count ) ) {
 			$link_text = _x( 'Follow', 'Follow activity button', 'buddypress-followers' );
 		} else {
+			/* translators: %s: follower count */
 			$link_text = sprintf( _x( 'Follow %s', 'Follow activity button', 'buddypress-followers' ), '<span>' . $count . '</span>' );
 		}
 

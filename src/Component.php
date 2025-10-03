@@ -178,6 +178,7 @@ class Component extends BP_Component {
 		require $this->path . '/class-follow.php';
 		require $this->path . '/functions.php';
 		require $this->path . '/blocks.php';
+		require $this->path . '/emails.php';
 
 		if ( true === (bool) apply_filters( 'bp_follow_enable_users', true ) ) {
 			require $this->path . '/user/hooks.php';

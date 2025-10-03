@@ -55,6 +55,9 @@ class BP_Follow_Updater {
 			$this->install();
 		}
 
+		// Install BP Core emails if not already installed.
+		$this->install_emails();
+
 		// bump revision date in DB.
 		self::bump_revision_date();
 	}
@@ -91,6 +94,23 @@ class BP_Follow_Updater {
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
+	}
+
+	/**
+	 * Install BP Follow email templates.
+	 *
+	 * Uses BuddyPress Core email system to install customizable HTML email templates.
+	 *
+	 * @since 2.0.0
+	 */
+	protected function install_emails() {
+		// Check if the email installation function exists.
+		if ( ! function_exists( 'bp_follow_install_emails' ) ) {
+			return;
+		}
+
+		// Run the email installation.
+		bp_follow_install_emails();
 	}
 
 	/** REVISION DATE *************************************************/

@@ -30,6 +30,7 @@ function bp_follow_user_setup_nav( $main_nav = array(), $sub_nav = array() ) {
 
 	/** FOLLOWING NAV ************************************************/
 
+	/* translators: %s: following count */
 	bp_core_new_nav_item(
 		array(
 			'name'                => sprintf(
@@ -87,6 +88,7 @@ function bp_follow_user_setup_nav( $main_nav = array(), $sub_nav = array() ) {
 
 	/** FOLLOWERS NAV ************************************************/
 
+	/* translators: %s: follower count */
 	bp_core_new_nav_item(
 		array(
 			'name'                => sprintf(

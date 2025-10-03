@@ -34,12 +34,15 @@ function bp_follow_action_start() {
 	check_admin_referer( 'start_following' );
 
 	if ( bp_follow_is_following( array( 'leader_id' => bp_displayed_user_id(), 'follower_id' => bp_loggedin_user_id() ) ) ) {
+		/* translators: %s: member name */
 		bp_core_add_message( sprintf( __( 'You are already following %s.', 'buddypress-followers' ), bp_get_displayed_user_fullname() ), 'error' );
 
 	} else {
 		if ( ! bp_follow_start_following( array( 'leader_id' => bp_displayed_user_id(), 'follower_id' => bp_loggedin_user_id() ) ) ) {
+			/* translators: %s: member name */
 			bp_core_add_message( sprintf( __( 'There was a problem when trying to follow %s, please try again.', 'buddypress-followers' ), bp_get_displayed_user_fullname() ), 'error' );
 		} else {
+			/* translators: %s: member name */
 			bp_core_add_message( sprintf( __( 'You are now following %s.', 'buddypress-followers' ), bp_get_displayed_user_fullname() ) );
 		}
 	}
@@ -75,12 +78,15 @@ function bp_follow_action_stop() {
 	check_admin_referer( 'stop_following' );
 
 	if ( ! bp_follow_is_following( array( 'leader_id' => bp_displayed_user_id(), 'follower_id' => bp_loggedin_user_id() ) ) ) {
+		/* translators: %s: member name */
 		bp_core_add_message( sprintf( __( 'You are not following %s.', 'buddypress-followers' ), bp_get_displayed_user_fullname() ), 'error' );
 
 	} else {
 		if ( ! bp_follow_stop_following( array( 'leader_id' => bp_displayed_user_id(), 'follower_id' => bp_loggedin_user_id() ) ) ) {
+			/* translators: %s: member name */
 			bp_core_add_message( sprintf( __( 'There was a problem when trying to stop following %s, please try again.', 'buddypress-followers' ), bp_get_displayed_user_fullname() ), 'error' );
 		} else {
+			/* translators: %s: member name */
 			bp_core_add_message( sprintf( __( 'You are no longer following %s.', 'buddypress-followers' ), bp_get_displayed_user_fullname() ) );
 		}
 	}

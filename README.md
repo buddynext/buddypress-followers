@@ -1,34 +1,38 @@
 # BuddyPress Followers
 
-A modern, developer-friendly BuddyPress plugin that adds Twitter-style follow functionality to your BuddyPress community.
+Add Twitter/Instagram-style follow functionality to your BuddyPress community! Let members follow each other to stay connected without requiring mutual friendship.
 
 ## Features
 
 ### Core Functionality
-- **Follow/Unfollow Users** - One-way follower relationships (Twitter-style)
-- **Following & Followers Lists** - Dedicated profile tabs showing who you follow and who follows you
-- **Follow Counts** - Dynamic follower and following counts
-- **AJAX Follow Buttons** - Real-time follow/unfollow without page reload
-- **Activity Stream Filtering** - "Following" tab to see activity from users you follow
-- **Notifications** - BuddyPress and email notifications when someone follows you
-- **REST API** - Complete RESTful API for follow operations
+- **One-Way Following** - Twitter-style follow system (no mutual approval needed)
+- **Following & Followers Tabs** - Dedicated profile tabs showing connections
+- **Follow Counts** - Display follower and following counts on profiles
+- **Instant Follow Buttons** - Click to follow/unfollow with AJAX (no page reload)
+- **Activity Filtering** - See activity only from people you follow
+- **Smart Notifications** - Get notified when someone follows you (BuddyPress + email)
+- **BuddyPress Core Emails** - Uses BP's email system with customizable HTML templates (Dashboard > Emails)
+- **Block Editor Support** - NEW! Add follower/following lists to any page with Gutenberg blocks
+- **Widgets** - Display followers and following lists in sidebars
+- **WP-CLI Commands** - Manage follows from command line (admins)
+- **REST API** - Full API support for custom integrations
 
 ### User Interface
-- Follow buttons on user profiles
-- Follow buttons in member directory
-- Follow buttons in activity streams
+- Follow buttons appear everywhere: profiles, member directory, activity streams
+- Beautiful grid layouts with BP Nouveau theme
 - Following/Followers profile tabs
-- WP Toolbar integration
-- Widgets (Following widget, Followers widget)
+- WP Toolbar quick links
+- Two widgets: "Users I'm Following" and "My Followers"
+- Two Gutenberg blocks in "Community blocks" category
 
-### Developer Features
-- Modern OOP architecture with namespaces
-- PSR-4 autoloading
-- Service layer pattern
-- Dependency injection container
-- Comprehensive hooks and filters
-- REST API v1 & v2 support (auto-detects)
-- Theme compatibility layer
+### For Developers
+- Modern PHP 7.4+ with OOP architecture
+- PSR-4 autoloading and namespaces
+- Service layer pattern with dependency injection
+- Comprehensive hooks and filters for customization
+- REST API v1 & v2 auto-detection
+- Composer support with code quality tools
+- Full theme compatibility layer
 
 ## Requirements
 
@@ -489,32 +493,31 @@ For sites with many followers:
 
 ## Changelog
 
-### 2.0.0
-- ✅ Modern file structure with PSR-4 autoloading
-- ✅ Service layer architecture with DI container
-- ✅ REST API v1 & v2 auto-detection
-- ✅ Fixed translation loading for WordPress 6.7+
-- ✅ Removed multisite/blog following support
-- ✅ Removed legacy BuddyBar code (~88 lines)
-- ✅ Cleaned up duplicate code (15% code reduction)
-- ✅ Fixed navigation 404 issues for follow/unfollow URLs
-- ✅ Fixed AJAX follow buttons in all contexts (directory, followers, following, friends tabs)
-- ✅ Added BP Nouveau grid layout support for followers/following pages
-- ✅ Fixed follow button URLs to work with correct leader_id in all contexts
-- ✅ Registered start/stop actions as hidden subnav items to prevent 404s
-- ✅ Updated JavaScript to support AJAX-loaded member lists (friends tab)
-- ✅ Added .gitignore file for version control
-- ✅ Added composer.json with dev dependencies (PHPCS, PHPUnit, PHPCompatibility)
-- ✅ Added comprehensive WP-CLI commands (start, stop, count, list, sync-counts, delete-all, stats)
-- ✅ Added "My Followers" widget to complement existing "Following" widget
-- ✅ Added Gutenberg blocks for Following and Followers
-  - Displays in "Community blocks" category with other BuddyPress blocks
-  - Shows member cards with avatar, name, and last active time
-  - Configurable title, max members (1-50), and user ID
-  - Supports logged-in user or specific user ID
-  - "See all" link to full followers/following page
-  - Matches BuddyPress member list styling
-- ✅ Improved developer experience
+### 2.0.0 - Major Update
+
+**New Features**
+
+- **Gutenberg Block Editor Support** - Add "Users I'm Following" and "My Followers" blocks to any page or post using the block editor. Find them in the "Community blocks" category! Blocks show followers or following for any user with avatars, names, last active time, customizable titles, and "See all" links.
+- **New "My Followers" Widget** - Display users who follow you in any widget area, complementing the existing "Following" widget
+- **WP-CLI Commands** - Site administrators can now manage follow relationships from the command line with bulk operations, statistics, and sync counts
+
+**Improvements**
+
+- **Better Follow Buttons** - Follow/unfollow buttons now work smoothly with AJAX in all locations: member directory, profile pages, followers list, following list, and friends tab
+- **Fixed Page Not Found Errors** - Resolved 404 errors when clicking follow/unfollow buttons from followers and following pages
+- **Modern Grid Layout** - Followers and following pages now display beautifully in grid format when using BP Nouveau theme
+- **BuddyPress Core Email System** - Migrated from plain text emails to BuddyPress Core email system with customizable HTML templates. Users receive beautiful, styled emails when someone follows them. Site admins can customize the email template from Dashboard > Emails > "A member starts following your activity". Templates use tokens like {{follower.name}} and support both HTML and plain text versions. Email automatically installs on plugin activation.
+- **Faster Performance** - Cleaner, more efficient code with 15% reduction in file size
+- **WordPress 6.7+ Compatible** - Fixed translation loading for the latest WordPress version
+
+**For Developers**
+
+- Modern PHP architecture with PSR-4 autoloading and service layer pattern
+- Dependency injection container for better code organization
+- Comprehensive REST API with auto-detection for BuddyPress v1 & v2
+- Composer support with code quality tools (PHPCS, PHPUnit, PHPCompatibility)
+- Removed legacy multisite/blog following support (focused on user following only)
+- Extensive hooks and filters for customization
 
 ## Support
 

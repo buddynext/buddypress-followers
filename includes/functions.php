@@ -458,10 +458,12 @@ function bp_follow_format_notifications( $action, $item_id, $secondary_item_id, 
 			$link = $text;
 
 			if ( 1 === $total_items ) {
+				/* translators: %s: member name */
 				$text = sprintf( __( '%s is now following you', 'buddypress-followers' ), bp_core_get_user_displayname( $item_id ) );
 				$link = add_query_arg( 'bpf_read', 1, bp_follow_get_user_url( $item_id ) );
 
 			} else {
+				/* translators: %d: number of users */
 				$text = sprintf( __( '%d more users are now following you', 'buddypress-followers' ), $total_items );
 
 				if ( bp_is_active( 'notifications' ) ) {

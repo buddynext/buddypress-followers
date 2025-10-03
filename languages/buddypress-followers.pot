@@ -1,318 +1,492 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Copyright (C) 2025 Andy Peatling, r-a-y, vapvarun
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: bp-follow\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-05 15:40-0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: BuddyPress Follow 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/buddypress-followers\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-10-02T20:17:59+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: buddypress-followers\n"
 
-#: bp-follow-core.php:45 bp-follow-core.php:45
-#: _inc/users/notifications.php:239
+#. Plugin Name of the plugin
+#: buddypress-followers.php
+msgid "BuddyPress Follow"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: buddypress-followers.php
+msgid "http://wordpress.org/extend/plugins/buddypress-followers"
+msgstr ""
+
+#. Description of the plugin
+#: buddypress-followers.php
+msgid "Follow members on your BuddyPress site with this nifty plugin."
+msgstr ""
+
+#. Author of the plugin
+#: buddypress-followers.php
+msgid "Andy Peatling, r-a-y, vapvarun"
+msgstr ""
+
+#: buddypress-followers.php:56
+msgid "BuddyPress Follow requires BuddyPress 14.4.0 or newer."
+msgstr ""
+
+#: includes/activity/class-activity.php:152
+msgid "You are already following that item."
+msgstr ""
+
+#: includes/activity/class-activity.php:154
+msgid "You were not following that item."
+msgstr ""
+
+#: includes/activity/class-activity.php:162
+msgid "You are now following that item."
+msgstr ""
+
+#: includes/activity/class-activity.php:164
+msgid "You are no longer following that item."
+msgstr ""
+
+#: includes/activity/class-module.php:94
+msgctxt "Activity subnav tab"
+msgid "Followed Activity"
+msgstr ""
+
+#: includes/activity/class-module.php:120
+msgctxt "Adminbar activity subnav"
+msgid "Followed Activity"
+msgstr ""
+
+#: includes/activity/class-module.php:160
+msgid "My Followed Activity"
+msgstr ""
+
+#. translators: User's following activity RSS title - "[Site Name] | [User Display Name] | Followed Activity"
+#: includes/activity/class-module.php:452
+#, php-format
+msgid "%1$s | %2$s | Followed Activity"
+msgstr ""
+
+#: includes/activity/functions.php:235
+msgctxt "Follow activity button"
+msgid "Unfollow"
+msgstr ""
+
+#. translators: %s: follower count
+#: includes/activity/functions.php:238
+#, php-format
+msgctxt "Follow activity button"
+msgid "Unfollow %s"
+msgstr ""
+
+#: includes/activity/functions.php:258
+msgctxt "Follow activity button"
 msgid "Follow"
 msgstr ""
 
-#: loader.php:38 loader.php:38
+#. translators: %s: follower count
+#: includes/activity/functions.php:261
 #, php-format
-msgid ""
-"Hey! BP Follow v1.2 requires BuddyPress 1.5 or higher.  If you are still "
-"using BuddyPress 1.2 and you don't plan on upgrading, use <a href='%s'>BP "
-"Follow v1.1.1 instead</a>."
+msgctxt "Follow activity button"
+msgid "Follow %s"
 msgstr ""
 
-#: _inc/bp-follow-functions.php:372 _inc/users/notifications.php:302
+#: includes/blocks.php:61
+#: includes/user/widgets.php:99
+#: blocks/following/index.js:15
+#: blocks/following/index.js:94
+msgid "Users I'm Following"
+msgstr ""
+
+#: includes/blocks.php:104
+#: includes/blocks.php:196
+msgid "See all"
+msgstr ""
+
+#: includes/blocks.php:153
+#: includes/user/widgets.php:201
+#: blocks/followers/index.js:15
+#: blocks/followers/index.js:94
+msgid "My Followers"
+msgstr ""
+
+#. translators: do not remove {} brackets or translate its contents.
+#: includes/emails.php:23
+msgid "[{{{site.name}}}] {{follower.name}} is now following you"
+msgstr ""
+
+#. translators: do not remove {} brackets or translate its contents.
+#: includes/emails.php:25
+msgid ""
+"<a href=\"{{{follower.url}}}\">{{follower.name}}</a> is now following your activity.\n"
+"\n"
+"To view {{follower.name}}'s profile, visit: <a href=\"{{{follower.url}}}\">{{{follower.url}}}</a>"
+msgstr ""
+
+#. translators: do not remove {} brackets or translate its contents.
+#: includes/emails.php:27
+msgid ""
+"{{follower.name}} is now following your activity.\n"
+"\n"
+"To view {{follower.name}}'s profile, visit: {{{follower.url}}}"
+msgstr ""
+
+#: includes/emails.php:43
+#: includes/user/notifications.php:175
+msgid "A member starts following your activity"
+msgstr ""
+
+#: includes/functions.php:433
+#: src/Component.php:156
+msgid "Follow"
+msgstr ""
+
+#: includes/functions.php:434
+msgid "Yes"
+msgstr ""
+
+#: includes/functions.php:435
+msgid "No"
+msgstr ""
+
+#. translators: %s: member name
+#: includes/functions.php:462
 #, php-format
 msgid "%s is now following you"
 msgstr ""
 
-#: _inc/bp-follow-functions.php:376
+#. translators: %d: number of users
+#: includes/functions.php:467
 #, php-format
 msgid "%d more users are now following you"
 msgstr ""
 
-#: _inc/modules/blogs.php:99
-msgctxt "Sites subnav tab"
-msgid "Followed Sites"
-msgstr ""
-
-#: _inc/modules/blogs.php:111
-msgctxt "Activity subnav tab"
-msgid "Followed Sites"
-msgstr ""
-
-#: _inc/modules/blogs.php:137
-msgctxt "Adminbar activity subnav"
-msgid "Followed Sites"
-msgstr ""
-
-#: _inc/modules/blogs.php:169
-msgctxt "Adminbar blogs subnav"
-msgid "Followed Sites"
-msgstr ""
-
-#: _inc/modules/blogs.php:214
-#, php-format
-msgid "Followed Sites <span>%d</span>"
-msgstr ""
-
-#: _inc/modules/blogs.php:238 _inc/users/hooks.php:44 _inc/users/hooks.php:494
-#: _inc/users/hooks.php:517
-#, php-format
-msgid "Following <span>%d</span>"
-msgstr ""
-
-#: _inc/modules/blogs.php:575
-msgctxt "Footer button"
-msgid "Followed Sites"
-msgstr ""
-
-#: _inc/modules/blogs.php:627 _inc/users/template.php:89
-msgctxt "Button"
-msgid "Unfollow"
-msgstr ""
-
-#: _inc/modules/blogs.php:630
-msgctxt "Button"
-msgid "Unfollow Site"
-msgstr ""
-
-#: _inc/modules/blogs.php:640 _inc/users/template.php:99
-msgctxt "Button"
-msgid "Follow"
-msgstr ""
-
-#: _inc/modules/blogs.php:643
-msgctxt "Button"
-msgid "Follow Site"
-msgstr ""
-
-#: _inc/modules/blogs.php:912
-#, php-format
-msgid "%1$s | %2$s | Followed Site Activity"
-msgstr ""
-
-#: _inc/modules/blogs.php:915
-#, php-format
-msgid "Activity feed for sites that %s is following."
-msgstr ""
-
-#: _inc/modules/blogs.php:952
-msgid "You are already following that blog."
-msgstr ""
-
-#: _inc/modules/blogs.php:954
-msgid "You are not following that blog."
-msgstr ""
-
-#: _inc/modules/blogs.php:985
-#, php-format
-msgid "You are now following the site, %s."
-msgstr ""
-
-#: _inc/modules/blogs.php:987
-msgid "You are now following that site."
-msgstr ""
-
-#: _inc/modules/blogs.php:991
-#, php-format
-msgid "You are no longer following the site, %s."
-msgstr ""
-
-#: _inc/modules/blogs.php:993
-msgid "You are no longer following that site."
-msgstr ""
-
-#: _inc/users/actions.php:35
+#. translators: %s: member name
+#: includes/user/actions.php:38
 #, php-format
 msgid "You are already following %s."
 msgstr ""
 
-#: _inc/users/actions.php:39
+#. translators: %s: member name
+#: includes/user/actions.php:43
 #, php-format
 msgid "There was a problem when trying to follow %s, please try again."
 msgstr ""
 
-#: _inc/users/actions.php:41
+#. translators: %s: member name
+#: includes/user/actions.php:46
 #, php-format
 msgid "You are now following %s."
 msgstr ""
 
-#: _inc/users/actions.php:74
+#. translators: %s: member name
+#: includes/user/actions.php:82
 #, php-format
 msgid "You are not following %s."
 msgstr ""
 
-#: _inc/users/actions.php:78
+#. translators: %s: member name
+#: includes/user/actions.php:87
 #, php-format
 msgid "There was a problem when trying to stop following %s, please try again."
 msgstr ""
 
-#: _inc/users/actions.php:80
+#. translators: %s: member name
+#: includes/user/actions.php:90
 #, php-format
 msgid "You are no longer following %s."
 msgstr ""
 
-#: _inc/users/actions.php:117
+#. translators: User's following activity RSS title - "[Site Name] | [User Display Name] | Following Activity"
+#: includes/user/actions.php:127
 #, php-format
 msgid "%1$s | %2$s | Following Activity"
 msgstr ""
 
-#: _inc/users/actions.php:120
+#: includes/user/hooks.php:37
+#: includes/user/hooks.php:569
+#: includes/user/hooks.php:598
 #, php-format
-msgid "Activity feed for people that %s is following."
+msgid "Following %s"
 msgstr ""
 
-#: _inc/users/actions.php:167
-msgid "Already following"
+#: includes/user/hooks.php:54
+msgid "Following"
 msgstr ""
 
-#: _inc/users/actions.php:172
-msgid "Error following user"
-msgstr ""
-
-#: _inc/users/actions.php:220
-msgid "Not following"
-msgstr ""
-
-#: _inc/users/actions.php:226
-msgid "Error unfollowing user"
-msgstr ""
-
-#: _inc/users/hooks.php:55
+#: includes/user/hooks.php:95
 #, php-format
-msgid "Followers <span>%d</span>"
+msgid "Followers %s"
 msgstr ""
 
-#: _inc/users/hooks.php:69
+#: includes/user/hooks.php:112
+msgid "Followers"
+msgstr ""
+
+#: includes/user/hooks.php:153
 msgctxt "Activity subnav tab"
 msgid "Following"
 msgstr ""
 
-#: _inc/users/hooks.php:103 _inc/users/hooks.php:209
+#: includes/user/hooks.php:189
 msgctxt "Adminbar main nav"
 msgid "Follow"
 msgstr ""
 
-#: _inc/users/hooks.php:111 _inc/users/hooks.php:220
+#: includes/user/hooks.php:197
 msgctxt "Adminbar follow subnav"
 msgid "Following"
 msgstr ""
 
-#: _inc/users/hooks.php:119 _inc/users/hooks.php:231
+#: includes/user/hooks.php:205
 msgctxt "Adminbar follow subnav"
 msgid "Followers"
 msgstr ""
 
-#: _inc/users/hooks.php:148
+#: includes/user/hooks.php:235
 msgctxt "Adminbar activity subnav"
 msgid "Following"
 msgstr ""
 
-#: _inc/users/hooks.php:494
+#: includes/user/hooks.php:569
 msgid "The public activity for everyone you are following on this site."
 msgstr ""
 
-#: _inc/users/hooks.php:852
+#: includes/user/hooks.php:938
 msgid "You are following some users, but they haven't posted yet."
 msgstr ""
 
-#: _inc/users/hooks.php:854
+#: includes/user/hooks.php:940
 msgid "You are not following anyone yet."
 msgstr ""
 
-#: _inc/users/hooks.php:862
+#: includes/user/hooks.php:948
 msgid "This user is following some users, but they haven't posted yet."
 msgstr ""
 
-#: _inc/users/hooks.php:864
+#: includes/user/hooks.php:950
 msgid "This user isn't following anyone yet."
 msgstr ""
 
-#: _inc/users/notifications.php:240
-msgid "Yes"
-msgstr ""
-
-#: _inc/users/notifications.php:241
-msgid "No"
-msgstr ""
-
-#: _inc/users/notifications.php:248
-msgid "A member starts following your activity"
-msgstr ""
-
-#: _inc/users/notifications.php:305
-#, php-format
-msgid ""
-"%s is now following your activity.\n"
-"\n"
-"To view %s's profile: %s"
-msgstr ""
-
-#: _inc/users/notifications.php:312
-#, php-format
-msgid ""
-"\n"
-"\n"
-"---------------------\n"
-"To disable these notifications please log in and go to:\n"
-"%s"
-msgstr ""
-
-#: _inc/users/screens.php:196
+#: includes/user/screens.php:203
 msgid "Order By:"
 msgstr ""
 
-#: _inc/users/screens.php:199
+#: includes/user/screens.php:206
 msgid "Newest Follows"
 msgstr ""
 
-#: _inc/users/screens.php:200
+#: includes/user/screens.php:207
 msgid "Oldest Follows"
 msgstr ""
 
-#: _inc/users/screens.php:202
+#: includes/user/screens.php:209
 msgid "Last Active"
 msgstr ""
 
-#: _inc/users/screens.php:203
+#: includes/user/screens.php:210
 msgid "Newest Registered"
 msgstr ""
 
-#: _inc/users/screens.php:206
+#: includes/user/screens.php:213
 msgid "Alphabetical"
 msgstr ""
 
-#: _inc/users/widgets.php:25
+#: includes/user/widgets.php:25
+#: blocks/following/index.js:16
 msgid "Show a list of member avatars that the logged-in user is following."
 msgstr ""
 
-#: _inc/users/widgets.php:31
+#: includes/user/widgets.php:31
 msgid "(BP Follow) Users I'm Following"
 msgstr ""
 
-#: _inc/users/widgets.php:99
-msgid "Users I'm Following"
-msgstr ""
-
-#: _inc/users/widgets.php:104
-msgid "Title:"
-msgstr ""
-
-#: _inc/users/widgets.php:107
+#: includes/user/widgets.php:107
+#: includes/user/widgets.php:209
 msgid "Max members to show:"
 msgstr ""
 
-#: _inc/users/widgets.php:108
-msgid ""
-"Note: This widget is only displayed if a member is logged in and if the "
-"logged-in user is following some users."
+#: includes/user/widgets.php:108
+msgid "Note: This widget is only displayed if a member is logged in and if the logged-in user is following some users."
+msgstr ""
+
+#: includes/user/widgets.php:127
+#: blocks/followers/index.js:16
+msgid "Show a list of member avatars that follow the logged-in user."
+msgstr ""
+
+#: includes/user/widgets.php:133
+msgid "(BP Follow) My Followers"
+msgstr ""
+
+#: includes/user/widgets.php:210
+msgid "Note: This widget is only displayed if a member is logged in and if the logged-in user has followers."
+msgstr ""
+
+#: src/REST/FollowController.php:182
+msgid "You cannot follow yourself."
+msgstr ""
+
+#: src/REST/FollowController.php:191
+msgid "Unable to follow this user."
+msgstr ""
+
+#: src/REST/FollowController.php:213
+msgid "Unable to unfollow this user."
+msgstr ""
+
+#: src/REST/FollowController.php:226
+msgid "You must be logged in to perform this action."
+msgstr ""
+
+#: src/Service/AjaxService.php:106
+msgid "Already following"
+msgstr ""
+
+#: src/Service/AjaxService.php:107
+msgid "Error following user"
+msgstr ""
+
+#: src/Service/AjaxService.php:114
+msgid "Error unfollowing user"
+msgstr ""
+
+#: src/Service/AjaxService.php:115
+msgid "Not following"
+msgstr ""
+
+#: src/Service/ButtonService.php:90
+msgctxt "Button"
+msgid "Unfollow"
+msgstr ""
+
+#: src/Service/ButtonService.php:95
+msgctxt "Button"
+msgid "Follow"
+msgstr ""
+
+#: blocks/followers/index.js:51
+msgid "This block will display members that follow user #"
+msgstr ""
+
+#: blocks/followers/index.js:51
+msgid "."
+msgstr ""
+
+#: blocks/followers/index.js:53
+#: blocks/followers/index.js:58
+#: blocks/following/index.js:53
+#: blocks/following/index.js:58
+msgid "Max members:"
+msgstr ""
+
+#: blocks/followers/index.js:57
+msgid "This block will display members that follow the logged-in user."
+msgstr ""
+
+#: blocks/followers/index.js:64
+#: blocks/following/index.js:64
+msgid "Settings"
+msgstr ""
+
+#: blocks/followers/index.js:66
+#: blocks/following/index.js:66
+msgid "Title"
+msgstr ""
+
+#: blocks/followers/index.js:73
+#: blocks/following/index.js:73
+msgid "Max members to show"
+msgstr ""
+
+#: blocks/followers/index.js:82
+#: blocks/following/index.js:82
+msgid "User ID"
+msgstr ""
+
+#: blocks/followers/index.js:88
+msgid "Leave as 0 to show followers for logged-in user. Enter a specific user ID to show that user's followers."
+msgstr ""
+
+#: blocks/following/index.js:51
+msgid "This block will display members that user #"
+msgstr ""
+
+#: blocks/following/index.js:51
+msgid " is following."
+msgstr ""
+
+#: blocks/following/index.js:57
+msgid "This block will display members that the logged-in user is following."
+msgstr ""
+
+#: blocks/following/index.js:88
+msgid "Leave as 0 to show following list for logged-in user. Enter a specific user ID to show that user's following list."
+msgstr ""
+
+#: blocks/followers/block.json
+msgctxt "block title"
+msgid "My Followers"
+msgstr ""
+
+#: blocks/followers/block.json
+msgctxt "block description"
+msgid "Show a list of member avatars that follow the logged-in user."
+msgstr ""
+
+#: blocks/followers/block.json
+#: blocks/following/block.json
+msgctxt "block keyword"
+msgid "buddypress"
+msgstr ""
+
+#: blocks/followers/block.json
+#: blocks/following/block.json
+msgctxt "block keyword"
+msgid "follow"
+msgstr ""
+
+#: blocks/followers/block.json
+msgctxt "block keyword"
+msgid "followers"
+msgstr ""
+
+#: blocks/followers/block.json
+#: blocks/following/block.json
+msgctxt "block keyword"
+msgid "users"
+msgstr ""
+
+#: blocks/followers/block.json
+#: blocks/following/block.json
+msgctxt "block keyword"
+msgid "members"
+msgstr ""
+
+#: blocks/followers/block.json
+#: blocks/following/block.json
+msgctxt "block keyword"
+msgid "community"
+msgstr ""
+
+#: blocks/following/block.json
+msgctxt "block title"
+msgid "Users I'm Following"
+msgstr ""
+
+#: blocks/following/block.json
+msgctxt "block description"
+msgid "Show a list of member avatars that the logged-in user is following."
+msgstr ""
+
+#: blocks/following/block.json
+msgctxt "block keyword"
+msgid "following"
 msgstr ""

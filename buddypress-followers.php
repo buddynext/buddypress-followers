@@ -50,6 +50,41 @@ add_action( 'bp_include', 'bp_follow_init' );
 add_action( 'init', 'bp_follow_localization' );
 
 /**
+ * Plugin activation hook.
+ *
+ * @since 2.0.0
+ */
+function bp_follow_activation() {
+	// Set a flag to install emails on next load.
+	update_option( '_bp_follow_needs_email_install', '1' );
+}
+register_activation_hook( __FILE__, 'bp_follow_activation' );
+
+/**
+ * Install emails after activation.
+ *
+ * @since 2.0.0
+ */
+function bp_follow_maybe_install_emails() {
+	// Check if we need to install emails.
+	if ( ! get_option( '_bp_follow_needs_email_install' ) ) {
+		return;
+	}
+
+	// Check if BuddyPress is loaded.
+	if ( ! function_exists( 'bp_get_email_post_type' ) ) {
+		return;
+	}
+
+	// Install emails.
+	if ( function_exists( 'bp_follow_install_emails' ) ) {
+		bp_follow_install_emails();
+		delete_option( '_bp_follow_needs_email_install' );
+	}
+}
+add_action( 'bp_loaded', 'bp_follow_maybe_install_emails' );
+
+/**
  * Display admin notice for BuddyPress version requirement.
  */
 function bp_follow_version_notice() {

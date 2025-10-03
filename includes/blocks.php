@@ -10,7 +10,12 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Register all blocks.
+ * Register all Follow blocks.
+ *
+ * Registers the "Users I'm Following" and "My Followers" Gutenberg blocks
+ * for displaying follower/following lists in the block editor.
+ *
+ * @since 2.0.0
  */
 function bp_follow_register_blocks() {
 	$blocks = array(
@@ -38,8 +43,19 @@ add_action( 'init', 'bp_follow_register_blocks' );
 /**
  * Render the Following block.
  *
- * @param array $attributes Block attributes.
- * @return string Block HTML.
+ * Displays a list of members that a user is following. Shows member avatars,
+ * names, last active time, and a link to view the complete following list.
+ *
+ * @since 2.0.0
+ *
+ * @param array $attributes {
+ *     Block attributes.
+ *
+ *     @type string $title    Block title. Default "Users I'm Following".
+ *     @type int    $maxUsers Maximum number of members to display. Default 16.
+ *     @type int    $userId   User ID to show following for. Default 0 (logged-in user).
+ * }
+ * @return string Block HTML output, or empty string if no following found.
  */
 function bp_follow_render_following_block( $attributes ) {
 	$title     = isset( $attributes['title'] ) ? $attributes['title'] : __( "Users I'm Following", 'buddypress-followers' );
@@ -119,8 +135,19 @@ function bp_follow_render_following_block( $attributes ) {
 /**
  * Render the Followers block.
  *
- * @param array $attributes Block attributes.
- * @return string Block HTML.
+ * Displays a list of members that follow a user. Shows member avatars,
+ * names, last active time, and a link to view the complete followers list.
+ *
+ * @since 2.0.0
+ *
+ * @param array $attributes {
+ *     Block attributes.
+ *
+ *     @type string $title    Block title. Default "My Followers".
+ *     @type int    $maxUsers Maximum number of members to display. Default 16.
+ *     @type int    $userId   User ID to show followers for. Default 0 (logged-in user).
+ * }
+ * @return string Block HTML output, or empty string if no followers found.
  */
 function bp_follow_render_followers_block( $attributes ) {
 	$title     = isset( $attributes['title'] ) ? $attributes['title'] : __( 'My Followers', 'buddypress-followers' );

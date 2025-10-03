@@ -45,6 +45,9 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	/**
 	 * Start following a user.
 	 *
+	 * Creates a new follow relationship between two users. The follower will
+	 * start receiving updates from the leader in their activity stream.
+	 *
 	 * ## OPTIONS
 	 *
 	 * --leader=<user-id>
@@ -57,7 +60,12 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	 *
 	 *     wp bp follow start --leader=123 --follower=456
 	 *
+	 * @since 2.0.0
+	 *
 	 * @subcommand start
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments with 'leader' and 'follower' user IDs.
 	 */
 	public function start( $args, $assoc_args ) {
 		$leader_id   = isset( $assoc_args['leader'] ) ? (int) $assoc_args['leader'] : 0;
@@ -98,6 +106,9 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	/**
 	 * Stop following a user.
 	 *
+	 * Removes an existing follow relationship between two users. The follower will
+	 * stop receiving updates from the leader in their activity stream.
+	 *
 	 * ## OPTIONS
 	 *
 	 * --leader=<user-id>
@@ -110,7 +121,12 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	 *
 	 *     wp bp follow stop --leader=123 --follower=456
 	 *
+	 * @since 2.0.0
+	 *
 	 * @subcommand stop
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments with 'leader' and 'follower' user IDs.
 	 */
 	public function stop( $args, $assoc_args ) {
 		$leader_id   = isset( $assoc_args['leader'] ) ? (int) $assoc_args['leader'] : 0;
@@ -142,6 +158,9 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	/**
 	 * Get follower or following count for a user.
 	 *
+	 * Displays the number of followers a user has or the number of users
+	 * they are following. Useful for quick checks or scripting.
+	 *
 	 * ## OPTIONS
 	 *
 	 * --user=<user-id>
@@ -155,7 +174,12 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	 *     wp bp follow count --user=123 --type=followers
 	 *     wp bp follow count --user=123 --type=following
 	 *
+	 * @since 2.0.0
+	 *
 	 * @subcommand count
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments with 'user' ID and optional 'type'.
 	 */
 	public function count( $args, $assoc_args ) {
 		$user_id = isset( $assoc_args['user'] ) ? (int) $assoc_args['user'] : 0;
@@ -179,6 +203,9 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 
 	/**
 	 * List followers or following for a user.
+	 *
+	 * Displays a list of users who follow a user or users that a user is following.
+	 * Supports multiple output formats including table, CSV, JSON, IDs-only, or count.
 	 *
 	 * ## OPTIONS
 	 *
@@ -205,7 +232,12 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	 *     wp bp follow list --user=123 --type=following --format=json
 	 *     wp bp follow list --user=123 --type=followers --format=ids
 	 *
+	 * @since 2.0.0
+	 *
 	 * @subcommand list
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments with 'user' ID, optional 'type', and optional 'format'.
 	 */
 	public function list_follow( $args, $assoc_args ) {
 		$user_id = isset( $assoc_args['user'] ) ? (int) $assoc_args['user'] : 0;
@@ -265,6 +297,10 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	/**
 	 * Sync follower/following counts for all users.
 	 *
+	 * Recalculates and updates the cached follower and following counts stored
+	 * in user meta. Useful after database changes or to fix count discrepancies.
+	 * Shows a progress bar during execution.
+	 *
 	 * ## OPTIONS
 	 *
 	 * [--user=<user-id>]
@@ -279,7 +315,12 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	 *     wp bp follow sync-counts --user=123
 	 *     wp bp follow sync-counts --dry-run
 	 *
+	 * @since 2.0.0
+	 *
 	 * @subcommand sync-counts
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments with optional 'user' ID and 'dry-run' flag.
 	 */
 	public function sync_counts( $args, $assoc_args ) {
 		global $wpdb;
@@ -334,6 +375,10 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	/**
 	 * Delete all follow relationships (dangerous).
 	 *
+	 * Permanently removes all follow relationships from the database and clears
+	 * all related user meta. This action cannot be undone. Use with extreme caution.
+	 * Requires confirmation unless --yes flag is provided.
+	 *
 	 * ## OPTIONS
 	 *
 	 * [--yes]
@@ -343,7 +388,12 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	 *
 	 *     wp bp follow delete-all --yes
 	 *
+	 * @since 2.0.0
+	 *
 	 * @subcommand delete-all
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments with optional 'yes' confirmation flag.
 	 */
 	public function delete_all( $args, $assoc_args ) {
 		global $wpdb;
@@ -371,11 +421,20 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 	/**
 	 * Get statistics about follow relationships.
 	 *
+	 * Displays comprehensive statistics about the follow system, including total
+	 * relationships, number of active users, and users with the most followers/following.
+	 * Useful for understanding community engagement and network effects.
+	 *
 	 * ## EXAMPLES
 	 *
 	 *     wp bp follow stats
 	 *
+	 * @since 2.0.0
+	 *
 	 * @subcommand stats
+	 *
+	 * @param array $args         Positional arguments (unused).
+	 * @param array $assoc_args   Associative arguments (unused).
 	 */
 	public function stats( $args, $assoc_args ) {
 		global $wpdb;
