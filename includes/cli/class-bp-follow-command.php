@@ -185,7 +185,7 @@ class BP_Follow_CLI_Command extends WP_CLI_Command {
 		$user_id = isset( $assoc_args['user'] ) ? (int) $assoc_args['user'] : 0;
 		$type    = isset( $assoc_args['type'] ) ? $assoc_args['type'] : 'followers';
 
-		if ( ! $user_id ) {
+		if ( empty( $user_id ) ) {
 			WP_CLI::error( 'Please provide a --user ID.' );
 		}
 

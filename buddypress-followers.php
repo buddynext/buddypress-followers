@@ -3,7 +3,7 @@
 Plugin Name: BuddyPress Follow
 Plugin URI: http://wordpress.org/extend/plugins/buddypress-followers
 Description: Follow members on your BuddyPress site with this nifty plugin.
-Version: 2.0.0
+Version: 2.1.0
 Author: Andy Peatling, r-a-y, vapvarun
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -38,7 +38,7 @@ function bp_follow_init() {
 
 	// Register WP-CLI commands.
 	if ( defined( 'WP_CLI' ) && WP_CLI ) {
-		require_once BP_FOLLOW_DIR . '/includes/cli/class-follow-command.php';
+		require_once BP_FOLLOW_DIR . '/includes/cli/class-bp-follow-command.php';
 		WP_CLI::add_command( 'bp follow', 'BP_Follow_CLI_Command' );
 	}
 }

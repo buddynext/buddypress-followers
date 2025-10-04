@@ -1,0 +1,44 @@
+/**
+ * BuddyPress Follow Admin Styles
+ *
+ * @package BP-Follow
+ */
+
+.bp-follow-post-types-table,
+.bp-follow-taxonomies-table {
+	width: 100%;
+	margin-top: 20px;
+}
+
+.bp-follow-post-types-table thead,
+.bp-follow-taxonomies-table thead {
+	background-color: #f0f0f1;
+}
+
+.bp-follow-post-types-table th,
+.bp-follow-taxonomies-table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: 600;
+}
+
+.bp-follow-post-types-table td,
+.bp-follow-taxonomies-table td {
+	padding: 15px 10px;
+	border-bottom: 1px solid #dcdcde;
+}
+
+.bp-follow-post-type-row:hover,
+.bp-follow-taxonomy-row:hover {
+	background-color: #f6f7f7;
+}
+
+.bp-follow-post-types-table code,
+.bp-follow-taxonomies-table code {
+	color: #666;
+	font-size: 12px;
+}
+
+.nav-tab-wrapper {
+	margin-bottom: 20px;
+}

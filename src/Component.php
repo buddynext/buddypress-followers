@@ -177,28 +177,39 @@ class Component extends BP_Component {
 	 * @param array $includes Included files.
 	 */
 	public function includes( $includes = array() ) {
-		require $this->path . '/class-follow.php';
-		require $this->path . '/functions.php';
-		require $this->path . '/blocks.php';
-		require $this->path . '/emails.php';
-		require $this->path . '/digest.php';
+		require $this->path . '/class-bp-follow.php';
+		require $this->path . '/bp-follow-functions.php';
+		require $this->path . '/bp-follow-blocks.php';
+		require $this->path . '/bp-follow-emails.php';
+		require $this->path . '/bp-follow-digest.php';
+
+		// Content following functionality (v2.1.0+).
+		require $this->path . '/content/bp-follow-content-functions.php';
+		require $this->path . '/content/bp-follow-content-template.php';
+		require $this->path . '/content/bp-follow-content-shortcodes.php';
+		require $this->path . '/content/bp-follow-content-actions.php';
+		require $this->path . '/content/bp-follow-content-hooks.php';
+		require $this->path . '/content/bp-follow-content-user-settings.php';
+		require $this->path . '/content/bp-follow-content-user-nav.php';
+		require $this->path . '/content/bp-follow-content-assets.php';
 
 		if ( true === (bool) apply_filters( 'bp_follow_enable_users', true ) ) {
-			require $this->path . '/user/hooks.php';
-			require $this->path . '/user/template.php';
-			require $this->path . '/user/notifications.php';
-			require $this->path . '/user/widgets.php';
-			require $this->path . '/user/screens.php';
+			require $this->path . '/user/bp-follow-user-hooks.php';
+			require $this->path . '/user/bp-follow-user-template.php';
+			require $this->path . '/user/bp-follow-user-notifications.php';
+			require $this->path . '/user/bp-follow-user-widgets.php';
+			require $this->path . '/user/bp-follow-user-screens.php';
 
 			add_action( 'bp_init', array( $this, 'load_user_runtime_includes' ) );
 		}
 
 		if ( bp_is_active( 'activity' ) ) {
-			require $this->path . '/activity/class-activity.php';
+			require $this->path . '/activity/class-bp-follow-activity.php';
 		}
 
 		if ( is_admin() ) {
-			require_once $this->path . '/class-updater.php';
+			require_once $this->path . '/class-bp-follow-updater.php';
+			require_once $this->path . '/admin/class-bp-follow-content-settings.php';
 		}
 	}
 
@@ -209,11 +220,11 @@ class Component extends BP_Component {
 		$path = $this->path . '/user';
 
 		if ( wp_doing_ajax() && isset( $_POST['action'] ) && false !== strpos( $_POST['action'], 'follow' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			require_once $path . '/ajax.php';
+			require_once $path . '/bp-follow-user-ajax.php';
 		}
 
 		if ( bp_is_current_component( $this->followers->slug ) || bp_is_current_component( $this->following->slug ) || bp_is_action_variable( 'feed', 0 ) ) {
-			require_once $path . '/actions.php';
+			require_once $path . '/bp-follow-user-actions.php';
 		}
 	}
 

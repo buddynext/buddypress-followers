@@ -64,25 +64,27 @@ function bp_follow_user_setup_nav( $main_nav = array(), $sub_nav = array() ) {
 	// Register hidden subnav items for follow/unfollow actions to prevent 404s
 	bp_core_new_subnav_item(
 		array(
-			'name'            => 'Start',
-			'slug'            => 'start',
-			'parent_url'      => bp_follow_get_user_url( $user_id, array( $bp->follow->following->slug ) ),
-			'parent_slug'     => $bp->follow->following->slug,
-			'screen_function' => 'bp_follow_action_start',
-			'position'        => 100,
+			'name'              => 'Start',
+			'slug'              => 'start',
+			'parent_url'        => bp_follow_get_user_url( $user_id, array( $bp->follow->following->slug ) ),
+			'parent_slug'       => $bp->follow->following->slug,
+			'screen_function'   => 'bp_follow_action_start',
+			'position'          => 100,
 			'show_in_admin_bar' => false,
+			'user_has_access'   => false,
 		)
 	);
 
 	bp_core_new_subnav_item(
 		array(
-			'name'            => 'Stop',
-			'slug'            => 'stop',
-			'parent_url'      => bp_follow_get_user_url( $user_id, array( $bp->follow->following->slug ) ),
-			'parent_slug'     => $bp->follow->following->slug,
-			'screen_function' => 'bp_follow_action_stop',
-			'position'        => 100,
+			'name'              => 'Stop',
+			'slug'              => 'stop',
+			'parent_url'        => bp_follow_get_user_url( $user_id, array( $bp->follow->following->slug ) ),
+			'parent_slug'       => $bp->follow->following->slug,
+			'screen_function'   => 'bp_follow_action_stop',
+			'position'          => 100,
 			'show_in_admin_bar' => false,
+			'user_has_access'   => false,
 		)
 	);
 
@@ -122,25 +124,27 @@ function bp_follow_user_setup_nav( $main_nav = array(), $sub_nav = array() ) {
 	// Register hidden subnav items for follow/unfollow actions to prevent 404s
 	bp_core_new_subnav_item(
 		array(
-			'name'            => 'Start',
-			'slug'            => 'start',
-			'parent_url'      => bp_follow_get_user_url( $user_id, array( $bp->follow->followers->slug ) ),
-			'parent_slug'     => $bp->follow->followers->slug,
-			'screen_function' => 'bp_follow_action_start',
-			'position'        => 100,
+			'name'              => 'Start',
+			'slug'              => 'start',
+			'parent_url'        => bp_follow_get_user_url( $user_id, array( $bp->follow->followers->slug ) ),
+			'parent_slug'       => $bp->follow->followers->slug,
+			'screen_function'   => 'bp_follow_action_start',
+			'position'          => 100,
 			'show_in_admin_bar' => false,
+			'user_has_access'   => false,
 		)
 	);
 
 	bp_core_new_subnav_item(
 		array(
-			'name'            => 'Stop',
-			'slug'            => 'stop',
-			'parent_url'      => bp_follow_get_user_url( $user_id, array( $bp->follow->followers->slug ) ),
-			'parent_slug'     => $bp->follow->followers->slug,
-			'screen_function' => 'bp_follow_action_stop',
-			'position'        => 100,
+			'name'              => 'Stop',
+			'slug'              => 'stop',
+			'parent_url'        => bp_follow_get_user_url( $user_id, array( $bp->follow->followers->slug ) ),
+			'parent_slug'       => $bp->follow->followers->slug,
+			'screen_function'   => 'bp_follow_action_stop',
+			'position'          => 100,
 			'show_in_admin_bar' => false,
+			'user_has_access'   => false,
 		)
 	);
 
@@ -613,6 +617,11 @@ add_action( 'bp_members_directory_member_types', 'bp_follow_add_following_tab' )
 function bp_follow_pre_user_query( $q ) {
 	if ( 'oldest-follows' !== $q->query_vars['type'] && 'newest-follows' !== $q->query_vars['type'] ) {
 		return;
+	}
+
+	// Ensure include is an array before counting.
+	if ( ! isset( $q->query_vars['include'] ) || ! is_array( $q->query_vars['include'] ) ) {
+		$q->query_vars['include'] = array();
 	}
 
 	$q->total_users = count( $q->query_vars['include'] );

@@ -1,31 +1,36 @@
 === BuddyPress Follow ===
 Contributors: apeatling, r-a-y, vapvarun
-Tags: buddypress, following, followers, connections, social
+Tags: buddypress, following, followers, connections, social, authors, categories, content
 Requires at least: WordPress 5.0, BuddyPress 14.4
 Tested up to: WordPress 6.7, BuddyPress 15.0
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Add Twitter-style follow functionality to your BuddyPress community. Users can follow each other without requiring mutual friendship acceptance.
+Add Twitter-style follow functionality to your BuddyPress community. Users can follow members, authors, categories, and tags without requiring mutual friendship acceptance.
 
 **Core Features:**
 
-* **Follow/Unfollow** - One-way follower relationships (just like Twitter)
+* **Follow Members** - One-way follower relationships (just like Twitter)
+* **Follow Authors** - Get notified when authors publish new posts (NEW in v2.1!)
+* **Follow Categories & Tags** - Stay updated on new posts in specific topics (NEW in v2.1!)
+* **Custom Post Type Support** - Works with WooCommerce, Events, LearnDash, and ANY post type (NEW in v2.1!)
 * **Profile Tabs** - Following & Followers lists on user profiles
-* **Follow Buttons** - On profiles, member directory, and activity streams
+* **Follow Buttons** - On profiles, member directory, author archives, and activity streams
 * **AJAX Updates** - Real-time follow/unfollow without page reload
 * **Activity Filtering** - "Following" tab to see activity from followed users
-* **Notifications** - BuddyPress and email notifications for new followers
+* **Notifications** - Instant and digest notifications for new followers and content
+* **Digest Emails** - Daily/weekly digest with configurable send times (NEW in v2.1!)
 * **Customizable Emails** - Uses BuddyPress Core email system with HTML templates (Dashboard > Emails)
 * **Gutenberg Blocks** - "Users I'm Following" and "My Followers" blocks for pages/posts
 * **Widgets** - "Following" and "Followers" widgets for sidebars
 * **WP-CLI Commands** - Manage follows from command line
 * **REST API** - Complete RESTful API with v1/v2 auto-detection
 * **WP Toolbar** - Quick access menu items
+* **Admin Control Panel** - Configure post types, taxonomies, and notification settings (NEW in v2.1!)
 
 **Modern Architecture:**
 
@@ -94,6 +99,33 @@ Filters: `bp_follow_get_add_follow_button`, `bp_follow_following_nav_position`, 
 See README.md for complete documentation.
 
 == Changelog ==
+
+= 2.1.0 =
+**NEW: Blog Content Following System**
+* **Follow Authors** - Follow specific authors and get notified when they publish new posts
+* **Follow Categories** - Get updates about new posts in categories you care about
+* **Follow Tags** - Stay informed about new posts with specific tags
+* **Custom Post Type Support** - Works with ANY post type (WooCommerce products, Events, LearnDash courses, etc.)
+* **Smart Notifications** - Instant notifications AND daily/weekly digests for new content
+* **Admin Control Panel** - Settings > BP Follow with 5 tabs to configure everything
+* **Post Type Settings** - Enable/disable per post type, configure digest modes (combined/separate)
+* **Taxonomy Settings** - Enable/disable per taxonomy with custom labels
+* **Notification Queue** - Background processing with batch operations and retry logic
+* **Shortcodes** - [bp_follow_author], [bp_follow_category], [bp_follow_tag], [bp_followed_authors], [bp_followed_terms]
+* **Template Functions** - bp_follow_author_button(), bp_follow_term_button(), bp_is_following_author(), bp_is_following_term()
+* **Developer Hooks** - bp_follow_author_followed, bp_follow_term_followed, bp_follow_new_post_published, bp_follow_new_post_with_term
+* **Performance** - Cached follower counts, trending calculations, batch processing
+* **Zero Migration** - Automatic database upgrade, zero downtime, preserves all existing follows
+
+**Database**
+* Added 5 new tables: bp_follow_counts, bp_follow_content_meta, bp_follow_notification_queue, bp_follow_trending, bp_follow_digest_prefs
+* Database version tagging system for future upgrades
+* Automatic installer runs on plugin update
+
+**API Enhancements**
+* New AuthorFollowService for author following operations
+* New CategoryFollowService for taxonomy following operations
+* Helper functions: bp_follow_get_enabled_post_types(), bp_follow_is_post_type_enabled(), bp_follow_get_post_type_digest_mode()
 
 = 2.0.0 =
 **New Features**

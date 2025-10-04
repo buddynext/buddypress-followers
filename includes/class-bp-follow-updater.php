@@ -58,6 +58,9 @@ class BP_Follow_Updater {
 		// Install BP Core emails if not already installed.
 		$this->install_emails();
 
+		// Install content following tables (v2.1.0+).
+		$this->install_content_tables();
+
 		// bump revision date in DB.
 		self::bump_revision_date();
 	}
@@ -111,6 +114,25 @@ class BP_Follow_Updater {
 
 		// Run the email installation.
 		bp_follow_install_emails();
+	}
+
+	/**
+	 * Install content following database tables.
+	 *
+	 * Creates tables for author, category, and tag following functionality.
+	 *
+	 * @since 2.1.0
+	 */
+	protected function install_content_tables() {
+		// Load the content installer.
+		if ( ! class_exists( 'BP_Follow_Content_Installer' ) ) {
+			require_once BP_FOLLOW_DIR . '/includes/class-bp-follow-content-installer.php';
+		}
+
+		// Check if upgrade is needed.
+		if ( BP_Follow_Content_Installer::needs_upgrade() ) {
+			BP_Follow_Content_Installer::install();
+		}
 	}
 
 	/** REVISION DATE *************************************************/

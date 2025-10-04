@@ -56,11 +56,11 @@ class BP_Follow_Activity_Core {
 	protected function includes() {
 		$bp = $GLOBALS['bp'];
 
-		require $bp->follow->path . '/activity/functions.php';
+		require $bp->follow->path . '/activity/bp-follow-activity-functions.php';
 
 		// Add dependant hooks for the 'activity' module.
 		if ( true === (bool) apply_filters( 'bp_follow_enable_activity', false ) ) {
-			require $bp->follow->path . '/activity/class-module.php';
+			require $bp->follow->path . '/activity/class-bp-follow-activity-module.php';
 		}
 	}
 

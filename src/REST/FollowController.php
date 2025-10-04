@@ -238,8 +238,11 @@ class FollowController extends WP_REST_Controller {
 		return array(
 			'user_id' => array(
 				'required'          => true,
-				'validate_callback' => 'is_numeric',
+				'type'              => 'integer',
 				'sanitize_callback' => 'absint',
+				'validate_callback' => function( $param, $request, $key ) {
+					return is_numeric( $param );
+				},
 			),
 		);
 	}
@@ -253,8 +256,11 @@ class FollowController extends WP_REST_Controller {
 		return array(
 			'leader_id' => array(
 				'required'          => true,
-				'validate_callback' => 'is_numeric',
+				'type'              => 'integer',
 				'sanitize_callback' => 'absint',
+				'validate_callback' => function( $param, $request, $key ) {
+					return is_numeric( $param );
+				},
 			),
 		);
 	}

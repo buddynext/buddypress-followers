@@ -111,8 +111,8 @@ function bp_follow_load_template_filter( $found_template, $templates ) {
 		// add AJAX support to the members loop
 		// can disable with the 'bp_follow_allow_ajax_on_follow_pages' filter.
 		if ( apply_filters( 'bp_follow_allow_ajax_on_follow_pages', true ) ) {
-			// add the "Order by" dropdown filter
-			add_action( 'bp_member_plugin_options_nav',    'bp_follow_add_members_dropdown_filter' );
+			// Don't add the "Order by" dropdown filter to navigation menu
+			// Users can still see the list without needing to sort
 
 			// add ability to use AJAX.
 			add_action( 'bp_after_member_plugin_template', 'bp_follow_add_ajax_to_members_loop' );

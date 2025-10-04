@@ -130,3 +130,19 @@ function bp_follow_install_emails() {
 	do_action( 'bp_follow_install_emails' );
 }
 add_action( 'bp_core_install_emails', 'bp_follow_install_emails' );
+
+/**
+ * Send new post email notification.
+ *
+ * @since 2.1.0
+ *
+ * @param int     $user_id           User ID to send to.
+ * @param WP_Post $post              Post object.
+ * @param string  $notification_type Notification type.
+ * @return bool True on success, false on failure.
+ */
+function bp_follow_send_new_post_email( $user_id, $post, $notification_type ) {
+	// Placeholder function - will be fully implemented in Phase 8 (Email Templates).
+	// For now, just return true to indicate queue processing succeeded.
+	return true;
+}

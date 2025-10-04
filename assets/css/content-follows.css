@@ -1,0 +1,261 @@
+/**
+ * Content Follows Styles
+ *
+ * @package BP-Follow
+ * @since 2.1.0
+ */
+
+/* Container */
+.bp-follow-content-page {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* Header Section */
+.bp-follow-header {
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #eee;
+}
+
+.bp-follow-header .bp-screen-title {
+	margin-bottom: 10px;
+	font-size: 1.8em;
+	line-height: 1.3;
+}
+
+.bp-follow-header .bp-help-text {
+	color: #666;
+	font-size: 0.95em;
+	line-height: 1.6;
+	margin: 0;
+}
+
+/* Section Container */
+.bp-follow-post-type-section,
+.bp-follow-taxonomy-section {
+	margin-bottom: 40px;
+	background: #fff;
+	padding: 20px;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Header */
+.bp-follow-section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #eee;
+	padding-bottom: 15px;
+	margin-bottom: 20px;
+}
+
+.bp-follow-section-header h3 {
+	margin: 0;
+	font-size: 1.4em;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.bp-follow-section-header h3 .dashicons {
+	font-size: 1.2em;
+	width: 1.2em;
+	height: 1.2em;
+}
+
+/* Count Badge */
+.bp-follow-count-badge {
+	background: #0073aa;
+	color: #fff;
+	padding: 5px 12px;
+	border-radius: 12px;
+	font-size: 0.85em;
+	font-weight: 600;
+}
+
+/* Posts List */
+.bp-follow-posts-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.bp-follow-post-item {
+	border-bottom: 1px solid #eee;
+	padding: 20px 0;
+	list-style: none;
+}
+
+.bp-follow-post-item:last-child {
+	border-bottom: none;
+}
+
+.bp-follow-post-item article {
+	margin: 0;
+}
+
+.bp-follow-post-item .entry-header {
+	margin-bottom: 12px;
+}
+
+.bp-follow-post-item .entry-title {
+	margin: 0 0 8px;
+	font-size: 1.3em;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.bp-follow-post-item .entry-title a {
+	text-decoration: none;
+	color: #333;
+	transition: color 0.2s ease;
+}
+
+.bp-follow-post-item .entry-title a:hover,
+.bp-follow-post-item .entry-title a:focus {
+	color: #0073aa;
+}
+
+.bp-follow-post-item .entry-title a:focus-visible {
+	outline: 2px solid #0073aa;
+	outline-offset: 2px;
+}
+
+.bp-follow-post-item .entry-meta {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+	color: #666;
+	font-size: 0.85em;
+}
+
+.bp-follow-post-item .entry-meta .dashicons {
+	font-size: 1.1em;
+	width: 1.1em;
+	height: 1.1em;
+	vertical-align: middle;
+}
+
+.bp-follow-post-item .entry-meta > span {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.bp-follow-post-item .entry-meta a {
+	color: #666;
+	text-decoration: none;
+}
+
+.bp-follow-post-item .entry-meta a:hover {
+	color: #0073aa;
+}
+
+.bp-follow-post-item .meta-separator {
+	color: #ccc;
+}
+
+.bp-follow-post-item .entry-summary {
+	margin-top: 12px;
+	color: #555;
+	line-height: 1.6;
+}
+
+.bp-follow-post-item .entry-summary p {
+	margin: 0;
+}
+
+
+/* Empty State */
+.bp-follow-empty-message {
+	padding: 30px;
+	text-align: center;
+	background: #f9f9f9;
+	border-radius: 4px;
+	border: 1px solid #e0e0e0;
+}
+
+.bp-follow-empty-message p {
+	color: #666;
+	margin: 0;
+	line-height: 1.6;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+	.bp-follow-header .bp-screen-title {
+		font-size: 1.5em;
+	}
+
+	.bp-follow-section-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	.bp-follow-author-item {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.bp-follow-author-item .item-avatar {
+		align-self: center;
+	}
+
+	.bp-follow-author-item:hover {
+		margin: 0;
+		padding: 20px 10px;
+	}
+
+	.bp-follow-terms-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.bp-follow-post-type-section,
+	.bp-follow-taxonomy-section {
+		padding: 15px;
+	}
+
+	.bp-follow-header .bp-screen-title {
+		font-size: 1.3em;
+	}
+
+	.bp-follow-section-header h3 {
+		font-size: 1.2em;
+	}
+
+	.bp-follow-author-item .item-avatar img {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+	.bp-follow-author-item:hover {
+		border: 2px solid #0073aa;
+	}
+
+	.bp-follow-term-card:hover {
+		border: 2px solid #0073aa;
+	}
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+	.bp-follow-author-item,
+	.bp-follow-term-card,
+	.bp-follow-author-item .item-title a,
+	.bp-follow-term-header h4 a {
+		transition: none;
+	}
+
+	.bp-follow-term-card:hover {
+		transform: none;
+	}
+}
