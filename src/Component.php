@@ -192,6 +192,7 @@ class Component extends BP_Component {
 		require $this->path . '/content/bp-follow-content-user-settings.php';
 		require $this->path . '/content/bp-follow-content-user-nav.php';
 		require $this->path . '/content/bp-follow-content-assets.php';
+		require $this->path . '/content/bp-follow-archive-buttons.php';
 
 		if ( true === (bool) apply_filters( 'bp_follow_enable_users', true ) ) {
 			require $this->path . '/user/bp-follow-user-hooks.php';

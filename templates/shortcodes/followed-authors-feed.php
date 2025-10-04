@@ -66,30 +66,50 @@ if ( ! empty( $author_ids ) ) {
 			<aside class="bp-follow-feed-sidebar">
 				<div class="bp-follow-sidebar-header">
 					<h3><?php esc_html_e( 'Filter by Author', 'buddypress-followers' ); ?></h3>
-					<button type="button" class="bp-follow-toggle-all button-secondary">
+					<button type="button" class="bp-follow-toggle-all button-secondary" title="<?php esc_attr_e( 'Select/deselect all', 'buddypress-followers' ); ?>">
+						<span class="dashicons dashicons-yes-alt"></span>
 						<?php esc_html_e( 'Toggle All', 'buddypress-followers' ); ?>
 					</button>
 				</div>
 
-				<ul class="bp-follow-filter-list" role="list">
+				<div class="bp-follow-filter-help">
+					<span class="dashicons dashicons-info-outline"></span>
+					<span><?php esc_html_e( 'Uncheck authors to hide their posts', 'buddypress-followers' ); ?></span>
+				</div>
+
+				<ul class="bp-follow-filter-list <?php echo count( $authors_data ) > 5 ? 'bp-follow-collapsed' : ''; ?>" role="list" data-item-count="<?php echo count( $authors_data ); ?>">
 					<?php foreach ( $authors_data as $author ) : ?>
 						<li class="bp-follow-filter-item" data-author-id="<?php echo esc_attr( $author['id'] ); ?>">
-							<label class="bp-follow-filter-label">
+							<label class="bp-follow-filter-label" title="<?php esc_attr_e( 'Show/hide posts', 'buddypress-followers' ); ?>">
 								<input type="checkbox" class="bp-follow-filter-checkbox" value="<?php echo esc_attr( $author['id'] ); ?>" checked>
 								<span class="bp-follow-filter-name">
 									<?php echo esc_html( $author['name'] ); ?>
-									<span class="bp-follow-filter-count">(<?php echo esc_html( $author['count'] ); ?>)</span>
+									<span class="bp-follow-filter-count" title="<?php echo esc_attr( sprintf( __( '%d posts', 'buddypress-followers' ), $author['count'] ) ); ?>">(<?php echo esc_html( $author['count'] ); ?>)</span>
 								</span>
 							</label>
-							<button type="button" class="bp-follow-unfollow-btn" data-author-id="<?php echo esc_attr( $author['id'] ); ?>" title="<?php esc_attr_e( 'Unfollow', 'buddypress-followers' ); ?>">
+							<button type="button"
+								class="bp-follow-unfollow-btn bp-tooltip"
+								data-author-id="<?php echo esc_attr( $author['id'] ); ?>"
+								data-tooltip="<?php esc_attr_e( 'Unfollow', 'buddypress-followers' ); ?>"
+								aria-label="<?php echo esc_attr( sprintf( __( 'Unfollow %s', 'buddypress-followers' ), $author['name'] ) ); ?>">
 								<span class="dashicons dashicons-no-alt"></span>
 							</button>
 						</li>
 					<?php endforeach; ?>
 				</ul>
 
+				<?php if ( count( $authors_data ) > 5 ) : ?>
+					<div class="bp-follow-show-more-wrapper">
+						<button type="button" class="bp-follow-show-more">
+							<span><?php esc_html_e( 'Show More', 'buddypress-followers' ); ?></span>
+							<span class="dashicons dashicons-arrow-down-alt2"></span>
+						</button>
+					</div>
+				<?php endif; ?>
+
 				<div class="bp-follow-sidebar-actions">
-					<button type="button" class="bp-follow-apply-filter button button-primary">
+					<button type="button" class="bp-follow-apply-filter button button-primary" title="<?php esc_attr_e( 'Update posts', 'buddypress-followers' ); ?>">
+						<span class="dashicons dashicons-filter"></span>
 						<?php esc_html_e( 'Apply Filter', 'buddypress-followers' ); ?>
 					</button>
 				</div>

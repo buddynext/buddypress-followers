@@ -348,3 +348,63 @@ function bp_follow_get_category_service() {
 
 	return $service;
 }
+
+/**
+ * Check if a user is following an author.
+ *
+ * @since 2.1.0
+ *
+ * @param int    $follower_id User ID of the follower.
+ * @param int    $author_id   User ID of the author being followed.
+ * @param string $post_type   Post type. Default: 'post'.
+ * @return bool True if following, false otherwise.
+ */
+function bp_follow_is_following_author( $follower_id, $author_id, $post_type = 'post' ) {
+	$service = bp_follow_get_author_service();
+	return $service->is_following_author( $author_id, $follower_id, $post_type );
+}
+
+/**
+ * Check if a user is following a term.
+ *
+ * @since 2.1.0
+ *
+ * @param int    $follower_id User ID of the follower.
+ * @param int    $term_id     Term ID.
+ * @param string $taxonomy    Taxonomy name.
+ * @return bool True if following, false otherwise.
+ */
+function bp_follow_is_following_term( $follower_id, $term_id, $taxonomy ) {
+	$service = bp_follow_get_category_service();
+	return $service->is_following_term( $term_id, $taxonomy, $follower_id );
+}
+
+/**
+ * Get the number of followers for an author.
+ *
+ * @since 2.1.0
+ *
+ * @param int    $author_id User ID of the author.
+ * @param string $post_type Post type. Default: 'post'.
+ * @return int Number of followers.
+ */
+function bp_follow_get_author_followers_count( $author_id, $post_type = 'post' ) {
+	$service = bp_follow_get_author_service();
+	$followers = $service->get_author_followers( $author_id, $post_type );
+	return is_array( $followers ) ? count( $followers ) : 0;
+}
+
+/**
+ * Get the number of followers for a term.
+ *
+ * @since 2.1.0
+ *
+ * @param int    $term_id  Term ID.
+ * @param string $taxonomy Taxonomy name.
+ * @return int Number of followers.
+ */
+function bp_follow_get_term_followers_count( $term_id, $taxonomy ) {
+	$service = bp_follow_get_category_service();
+	$followers = $service->get_term_followers( $term_id, $taxonomy );
+	return is_array( $followers ) ? count( $followers ) : 0;
+}

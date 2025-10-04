@@ -1,0 +1,232 @@
+/**
+ * Archive Follow Buttons Styles - Minimal Theme-Compatible Version
+ *
+ * Uses theme's default button styles with minimal overrides
+ *
+ * @package BP-Follow
+ */
+
+/* Archive Title Wrapper */
+.bp-follow-archive-title-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+/* Title Button Container */
+.bp-follow-title-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: 15px;
+}
+
+/* Common button styling for both follow button and count */
+.bp-follow-btn {
+	display: inline-flex;
+	align-items: center;
+	padding: 5px 12px;
+	font-size: 13px;
+	line-height: 1.4;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	background: #fff;
+	color: #333;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: normal;
+	text-decoration: none;
+	box-shadow: none;
+}
+
+.bp-follow-btn:hover {
+	background: #f0f0f1;
+	border-color: #8c8f94;
+}
+
+/* Follow button specific */
+.bp-follow-archive-button {
+	position: relative;
+	min-width: 90px;
+	justify-content: center;
+}
+
+.bp-follow-archive-button.not-following {
+	background: #f7f7f7;
+	color: #2c3338;
+	border-color: #2271b1;
+}
+
+.bp-follow-archive-button.not-following:hover {
+	background: #2271b1;
+	color: #fff !important;
+	border-color: #135e96;
+}
+
+.bp-follow-archive-button.not-following:hover .dashicons,
+.bp-follow-archive-button.not-following:hover .button-text {
+	color: #fff !important;
+}
+
+.bp-follow-archive-button.following {
+	background: #fff;
+	color: #2c3338;
+	border-color: #8c8f94;
+}
+
+.bp-follow-archive-button.following:hover {
+	background: #f7f7f7;
+	color: #d63638;
+	border-color: #d63638;
+}
+
+/* Ensure text remains visible on hover */
+.bp-follow-archive-button:hover .button-text,
+.bp-follow-archive-button:hover .dashicons {
+	color: inherit;
+}
+
+.bp-follow-archive-button .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+	line-height: 1;
+	vertical-align: middle;
+	margin-right: 4px;
+}
+
+/* Follower count badge */
+.bp-follow-count {
+	cursor: default;
+	background: #f7f7f7;
+	border-color: #8c8f94;
+	color: #2c3338;
+	min-width: 90px;
+	justify-content: center;
+}
+
+.bp-follow-count:hover {
+	background: #f0f0f1;
+	border-color: #8c8f94;
+}
+
+/* Hover state for unfollow text - removed complex overlay, using simple text change in JS */
+
+/* Loading State */
+.bp-follow-archive-button.loading {
+	pointer-events: none;
+	opacity: 0.7;
+}
+
+.bp-follow-archive-button.loading .dashicons {
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Success/Error Messages */
+.bp-follow-message {
+	position: fixed;
+	top: 32px;
+	right: 50%;
+	transform: translateX(50%);
+	padding: 12px 24px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	z-index: 10000;
+	animation: slideDown 0.3s ease;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	min-width: 200px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: white;
+	border: 1px solid #e5e7eb;
+}
+
+.bp-follow-message.success {
+	color: #059669;
+	border-color: #10b981;
+}
+
+.bp-follow-message.success::before {
+	content: '✓';
+	font-weight: bold;
+	color: #10b981;
+}
+
+.bp-follow-message.error {
+	color: #dc2626;
+	border-color: #ef4444;
+}
+
+.bp-follow-message.error::before {
+	content: '✕';
+	font-weight: bold;
+	color: #ef4444;
+}
+
+@keyframes slideDown {
+	from {
+		transform: translateX(50%) translateY(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(50%) translateY(0);
+		opacity: 1;
+	}
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+	.bp-follow-archive-title-wrapper {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.bp-follow-title-button {
+		margin-left: 0;
+		margin-top: 10px;
+	}
+
+	.bp-follow-btn {
+		padding: 4px 10px;
+		font-size: 12px;
+	}
+
+	.bp-follow-message {
+		top: auto;
+		bottom: 20px;
+		right: 20px;
+		left: 20px;
+	}
+}
+
+/* Theme Compatibility */
+.archive .page-header .bp-follow-title-button,
+.archive .archive-header .bp-follow-title-button {
+	margin-top: 15px;
+}
+
+/* Dark Mode Support - minimal adjustments */
+@media (prefers-color-scheme: dark) {
+	.bp-follow-count {
+		background: #374151;
+		color: #d1d5db;
+	}
+
+	.bp-follow-count .follower-count {
+		color: #f3f4f6;
+	}
+}

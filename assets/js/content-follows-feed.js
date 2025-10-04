@@ -36,6 +36,9 @@
 
 			// Unfollow author/category
 			$(document).on('click', '.bp-follow-unfollow-btn', this.unfollow);
+
+			// Show more/less filters
+			$(document).on('click', '.bp-follow-show-more', this.toggleShowMore);
 		},
 
 		/**
@@ -69,12 +72,18 @@
 			});
 
 			if (selectedIds.length === 0) {
-				$postsContainer.html('<p class="bp-follow-no-posts">' + 'Please select at least one filter.' + '</p>');
+				var noSelectionHtml = '<div class="bp-follow-no-selection">' +
+					'<span class="dashicons dashicons-info"></span>' +
+					'<p><strong>No filters selected</strong></p>' +
+					'<p>Please select at least one ' + (feedType === 'authors' ? 'author' : 'category') + ' from the sidebar to see posts.</p>' +
+					'</div>';
+				$postsContainer.html(noSelectionHtml);
 				return;
 			}
 
 			// Disable button and show loading state
 			$button.prop('disabled', true).text('Applying...');
+			$container.addClass('bp-follow-applying');
 
 			// Fade out posts and show loading
 			$postsContainer.fadeOut(200, function() {
@@ -100,8 +109,9 @@
 
 			// AJAX request
 			$.post(bpFollowFeed.ajaxurl, ajaxData, function(response) {
-				// Re-enable button
+				// Re-enable button and remove applying state
 				$button.prop('disabled', false).text('Apply Filter');
+				$container.removeClass('bp-follow-applying');
 
 				// Hide loading
 				$loading.fadeOut(200);
@@ -160,6 +170,7 @@
 				}
 			}).fail(function() {
 				$button.prop('disabled', false).text('Apply Filter');
+				$container.removeClass('bp-follow-applying');
 				$loading.fadeOut(200);
 				$postsContainer.html('<p class="bp-follow-error">Error loading posts. Please try again.</p>').fadeIn(300);
 			});
@@ -234,7 +245,15 @@
 			var $container = $btn.closest('.bp-follow-feed-container');
 			var feedType = $container.data('feed-type');
 
-			if (!confirm('Are you sure you want to unfollow?')) {
+			// Get the name for better confirmation message
+			var itemName = $item.find('.bp-follow-filter-name').first().text().trim();
+			itemName = itemName.replace(/\(\d+\)/, '').trim(); // Remove post count
+
+			var confirmMessage = feedType === 'authors'
+				? 'Are you sure you want to unfollow "' + itemName + '"?\n\nYou will no longer see their posts in your feed.'
+				: 'Are you sure you want to unfollow this category?\n\nYou will no longer see posts from this category in your feed.';
+
+			if (!confirm(confirmMessage)) {
 				return;
 			}
 
@@ -321,6 +340,31 @@
 					});
 				}
 			});
+		},
+
+		/**
+		 * Toggle show more/less for filter list.
+		 */
+		toggleShowMore: function(e) {
+			e.preventDefault();
+			var $btn = $(this);
+			var $container = $btn.closest('.bp-follow-feed-sidebar');
+			var $list = $container.find('.bp-follow-filter-list');
+			var isExpanded = $btn.hasClass('expanded');
+
+			if (isExpanded) {
+				// Collapse
+				$list.addClass('bp-follow-collapsed');
+				$btn.removeClass('expanded');
+				$btn.find('span:first').text('Show More');
+				// Scroll to top of sidebar if needed
+				$container.get(0).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+			} else {
+				// Expand
+				$list.removeClass('bp-follow-collapsed');
+				$btn.addClass('expanded');
+				$btn.find('span:first').text('Show Less');
+			}
 		}
 	};
 

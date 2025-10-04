@@ -68,6 +68,37 @@
 .bp-follow-toggle-all {
 	font-size: 0.8em;
 	padding: 4px 10px;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.bp-follow-toggle-all .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+/* Filter Help Text */
+.bp-follow-filter-help {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 10px 12px;
+	background: #f0f4ff;
+	border-left: 3px solid #4f46e5;
+	border-radius: 4px;
+	margin: 15px 0;
+	font-size: 0.875rem;
+	color: #4b5563;
+}
+
+.bp-follow-filter-help .dashicons {
+	color: #4f46e5;
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
 }
 
 /* Filter List */
@@ -75,26 +106,66 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	max-height: 400px;
-	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }
 
-.bp-follow-filter-list::-webkit-scrollbar {
-	width: 6px;
+/* Collapsible filter list for many items */
+.bp-follow-filter-list.bp-follow-collapsed {
+	max-height: 200px;
+	overflow: hidden;
+	position: relative;
 }
 
-.bp-follow-filter-list::-webkit-scrollbar-track {
-	background: #f1f1f1;
-	border-radius: 3px;
+.bp-follow-filter-list.bp-follow-collapsed::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 40px;
+	background: linear-gradient(to bottom, transparent, white);
+	pointer-events: none;
 }
 
-.bp-follow-filter-list::-webkit-scrollbar-thumb {
-	background: #888;
-	border-radius: 3px;
+/* Show More/Less button */
+.bp-follow-show-more-wrapper {
+	text-align: center;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid #e5e7eb;
 }
 
-.bp-follow-filter-list::-webkit-scrollbar-thumb:hover {
-	background: #555;
+.bp-follow-show-more {
+	background: transparent;
+	border: 1px solid #cbd5e1;
+	color: #4f46e5;
+	padding: 6px 16px;
+	border-radius: 6px;
+	font-size: 0.875rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.bp-follow-show-more:hover {
+	background: #4f46e5;
+	color: white;
+	border-color: #4f46e5;
+}
+
+.bp-follow-show-more .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	transition: transform 0.2s ease;
+}
+
+.bp-follow-show-more.expanded .dashicons {
+	transform: rotate(180deg);
 }
 
 .bp-follow-filter-item {
@@ -141,6 +212,28 @@
 	color: #1f2937;
 }
 
+/* Checkbox visual feedback */
+.bp-follow-filter-checkbox:focus {
+	outline: 2px solid #4f46e5;
+	outline-offset: 2px;
+}
+
+/* Applying state animation */
+.bp-follow-applying .bp-follow-filter-checkbox:checked {
+	animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	50% {
+		transform: scale(1.1);
+		opacity: 0.8;
+	}
+}
+
 .bp-follow-filter-name {
 	font-size: 0.95em;
 	color: #6b7280;
@@ -158,19 +251,90 @@
 	border: none;
 	padding: 4px;
 	cursor: pointer;
-	color: #999;
-	transition: color 0.2s ease;
+	color: #9ca3af;
+	transition: all 0.2s ease;
 	line-height: 1;
+	position: relative;
+	border-radius: 4px;
 }
 
 .bp-follow-unfollow-btn:hover {
-	color: #dc3232;
+	color: #ef4444;
+	background: #fef2f2;
 }
 
 .bp-follow-unfollow-btn .dashicons {
 	font-size: 18px;
 	width: 18px;
 	height: 18px;
+}
+
+/* Tooltips */
+.bp-tooltip {
+	position: relative;
+}
+
+.bp-tooltip::before,
+.bp-tooltip::after {
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+	pointer-events: none;
+	z-index: 1000;
+}
+
+.bp-tooltip::before {
+	content: attr(data-tooltip);
+	background: #1f2937;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 6px;
+	font-size: 0.75rem;
+	font-weight: 500;
+	white-space: nowrap;
+	bottom: calc(100% + 8px);
+	right: 50%;
+	transform: translateX(50%) translateY(4px);
+}
+
+.bp-tooltip::after {
+	content: '';
+	border: 5px solid transparent;
+	border-top-color: #1f2937;
+	bottom: calc(100% - 2px);
+	right: 50%;
+	transform: translateX(50%) translateY(4px);
+}
+
+.bp-tooltip:hover::before,
+.bp-tooltip:hover::after {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(50%) translateY(0);
+}
+
+/* Alternative position for crowded areas */
+.bp-tooltip-left::before {
+	right: calc(100% + 8px);
+	bottom: 50%;
+	transform: translateY(50%) translateX(-4px);
+}
+
+.bp-tooltip-left::after {
+	border-color: transparent;
+	border-left-color: #1f2937;
+	right: calc(100% - 2px);
+	bottom: 50%;
+	transform: translateY(50%) translateX(-4px);
+}
+
+.bp-tooltip-left:hover::before {
+	transform: translateY(50%) translateX(0);
+}
+
+.bp-tooltip-left:hover::after {
+	transform: translateY(50%) translateX(0);
 }
 
 /* Sidebar Actions */
@@ -183,6 +347,24 @@
 .bp-follow-apply-filter {
 	width: 100%;
 	text-align: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	font-weight: 500;
+	padding: 10px 16px;
+	transition: all 0.2s ease;
+}
+
+.bp-follow-apply-filter .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+.bp-follow-apply-filter:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
 
 /* Feed Content */
@@ -463,6 +645,35 @@
 	margin: 0;
 }
 
+/* No Selection Message */
+.bp-follow-no-selection {
+	text-align: center;
+	padding: 60px 40px;
+	background: linear-gradient(135deg, #f5f7ff 0%, #fff 100%);
+	border: 2px dashed #cbd5e1;
+	border-radius: 12px;
+	margin: 20px 0;
+}
+
+.bp-follow-no-selection .dashicons {
+	font-size: 48px;
+	width: 48px;
+	height: 48px;
+	color: #94a3b8;
+	margin-bottom: 16px;
+}
+
+.bp-follow-no-selection p {
+	margin: 0 0 8px;
+	color: #64748b;
+	font-size: 1rem;
+}
+
+.bp-follow-no-selection p strong {
+	color: #334155;
+	font-size: 1.125rem;
+}
+
 /* Pagination */
 .bp-follow-pagination {
 	margin-top: 30px;
@@ -520,6 +731,20 @@
 	.bp-follow-post-thumbnail {
 		width: 200px;
 		height: 150px;
+	}
+
+	/* Remove collapse on smaller screens - show all items */
+	.bp-follow-filter-list.bp-follow-collapsed {
+		max-height: none;
+		overflow: visible;
+	}
+
+	.bp-follow-filter-list.bp-follow-collapsed::after {
+		display: none;
+	}
+
+	.bp-follow-show-more-wrapper {
+		display: none;
 	}
 }
 
